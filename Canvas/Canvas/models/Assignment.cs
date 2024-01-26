@@ -4,15 +4,20 @@
     {
         public string? Name{get; set;}
         
-        public string? Classification{get; set;}
+        public string? Description{get; set;}
 
-        public int TotalAvailablePoint{get; set;}
+        public int TotalAvailablePoints{get; set;}
 
         public DateTime DueDate{get; set;}
 
         public Assignment() // default constructor, replaces automatic constructor
         {
 
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} : {Description} - {TotalAvailablePoints} Points, Due: {DueDate}";
         }
 
     }

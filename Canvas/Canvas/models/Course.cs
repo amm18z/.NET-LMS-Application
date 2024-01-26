@@ -4,7 +4,7 @@ namespace Canvas.Models
 {
     public class Course // this is a public class (and not internal) because it's a model (akin to a record in a database)
     {
-        public int Code{get; set;}
+        public string? Code{get; set;}
         
         public string? Name{get; set;}
 

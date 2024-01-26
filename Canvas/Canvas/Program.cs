@@ -37,7 +37,7 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
 
                     case "C":
                     case "c":
-                    AddStudentToCourse(courses); //Add a student from the list of students to a specific course
+                    AddStudentToCourse(courses, people); //Add a student from the list of students to a specific course
                     break;
 
                     case "D":
@@ -67,7 +67,7 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
 
                     case "I":
                     case "i":
-                    ListCoursesForStudent(); //List all courses a student is taking
+                    ListCoursesForStudent(people, courses); //List all courses a student is taking
                     break;
 
                     case "J":
@@ -82,7 +82,7 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
 
                     case "L":
                     case "l":
-                    CreateAssignmentForCourse(); //Create an assignment and add it to the list of assignments for a course
+                    CreateAssignmentForCourse(courses); //Create an assignment and add it to the list of assignments for a course
                     break;
 
                     case "Y":
@@ -94,20 +94,30 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
 
 
             }
-
-
-            foreach(Person p in people)
-            {
-                Console.WriteLine(p); //implicitly calls ToString(), which is we can print what we want by overloading ToString()
-            }
-
             
         }
 
+
         public static void CreateCourse(IList<Course> courses)
         {
+            Console.Write("Code: ");
+            var code = Console.ReadLine();
 
+            Console.Write("Name: ");
+            var name = Console.ReadLine();
+
+            Console.Write("Description: ");
+            var description = Console.ReadLine();
+
+            var myRoster = new List<Person>();
+            var myAssignments = new List<Assignment>();
+            var myModules = new List<Module>();
+
+            var myCourse = new Course{Code=code, Name=name, Description=description, Roster = myRoster, Assignments = myAssignments, Modules = myModules};
+
+            courses.Add(myCourse);
         }
+
 
         public static void CreateStudent(IList<Person> people) // static method = method that's not associated with an instance of a class
         {                                                  // now using IList, so any List that implements IList can be used! just a way to make it more generic
@@ -131,21 +141,72 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
             people.Add(myPerson);
         }
 
-        public static void AddStudentToCourse(IList<Course> courses)
+
+        public static void AddStudentToCourse(IList<Course> courses, IList<Person> people)
         {
+            Console.Write("Enter exact name of student (case sensitive): "); 
+            var name = Console.ReadLine();  
+
+            IEnumerable<Person> query1 = people.Where(Person => Person.Name==name );    //find matching student name in Student List
+            var student = query1.ElementAt(0);  // extract matching student from query
+
+            Console.Write("Enter exact code of course to add student to (case sensitive): ");
+            var code = Console.ReadLine();
+
+            IEnumerable<Course> query2 = courses.Where(Course => Course.Code==code );   //find matching course code in Courses List
+            var course = query2.ElementAt(0);   // extract matching course from query
+
+            course.Roster.Add(student); //add correct student to correct course
 
         }
+
 
         public static void RemoveStudentFromCourse(IList<Course> courses)
         {
+            Console.Write("Enter exact code of course to remove student from (case sensitive): ");
+            var code = Console.ReadLine();
 
+            IEnumerable<Course> query1 = courses.Where(Course => Course.Code==code );   //find matching course code in Courses List
+            var course = query1.ElementAt(0);   // extract matching course from query
+
+            Console.Write("Enter exact name of student (case sensitive): "); 
+            var name = Console.ReadLine();  
+
+            IEnumerable<Person> query2 = course.Roster.Where(Person => Person.Name==name );    //find matching student name in Student List
+            var student = query2.ElementAt(0);  // extract matching student from query
+
+            course.Roster.Remove(student); //I'm pretty sure List.Remove works like this.
         }
+
 
         public static void ListCourses(IList<Course> courses)
         {
+            int i = 0;
+            foreach(Course c in courses)
+            {
+                Console.Write($"{i}. ");
+                Console.WriteLine(c);
+                i++;
+            }
 
+            Console.WriteLine("");
+            Console.WriteLine("Now in index mode.");
+            var indexInt = -2;
+
+            while(indexInt != -1)
+            {
+                Console.Write("Enter index of Course for more info or '-1' to exit index mode: ");
+                var index = Console.ReadLine();
+                indexInt = int.Parse(index);
+
+                if(indexInt != -1)
+                {
+                    PrintCourseDetails(courses, indexInt);
+                }
+            }
             
         }
+
 
         public static void SearchCourses(IList<Course> courses)
         {
@@ -160,17 +221,20 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
                 case "a":
                 Console.Write("Enter course name: ");
                 var courseName = Console.ReadLine();
-                //IEnumerable<Course> query1 = courses.Where(Person => Person.Name.Contains(courseName) );
+                IEnumerable<Course> query1 = courses.Where(Person => Person.Name.Contains(courseName) );
+                ListCourses(query1.ToList());
                 break;
 
                 case "B":
                 case "b":
                 Console.Write("Enter course description: ");
                 var courseDesc = Console.ReadLine();
-                //IEnumerable<Course> query2 = courses.Where(Person => Person.Description.Contains(courseDesc) );
+                IEnumerable<Course> query2 = courses.Where(Person => Person.Description.Contains(courseDesc) );
+                ListCourses(query2.ToList());
                 break;
             }
         }
+
 
         public static void ListStudents(IList<Person> people)
         {
@@ -179,6 +243,7 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
                 Console.WriteLine(p); //implicitly calls ToString(), which is we can print what we want by overloading ToString()
             }
         }
+
 
         public static void SearchStudents(IList<Person> people)
         {
@@ -193,24 +258,139 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
             }
         }
 
-        public static void ListCoursesForStudent()
-        {
 
+        public static void ListCoursesForStudent(IList<Person> people, IList<Course> courses)
+        {
+            Console.Write("Enter exact name of student (case sensitive): "); 
+            var name = Console.ReadLine();  
+
+            IEnumerable<Person> query1 = people.Where(Person => Person.Name==name );    //find matching student name in Student List
+            var student = query1.ElementAt(0);  // extract matching student from query
+
+            foreach(Course c in courses)
+            {
+                foreach(Person p in c.Roster)   //holy double for loop, batman! this is bad code!
+                {
+                    if(p.Name == name)
+                    {
+                        Console.WriteLine(c); // this assumes that there are no duplicate students
+                    }
+                }
+            }
         }
+
+
         public static void UpdateCourse(IList<Course> courses)
         {
+            Console.Write("Enter exact code of course to update (case sensitive): ");
+            var code = Console.ReadLine();
+            IEnumerable<Course> query = courses.Where(Course => Course.Code==code );   //find matching course code in Courses List
+            var course = query.ElementAt(0);   // extract matching course from query
 
+            Console.WriteLine("Which property would you like to update?");
+            Console.WriteLine("A. Code.");
+            Console.WriteLine("B. Name.");
+            Console.WriteLine("C. Description.");
+
+            Console.Write("Input: ");
+            var searchBy = Console.ReadLine();
+
+            switch(searchBy)
+            {
+                case "A":
+                case "a":
+                Console.Write("Enter new course code: ");
+                var newCode = Console.ReadLine();
+                course.Code = newCode;
+                break;
+
+                case "B":
+                case "b":
+                Console.Write("Enter new course name: ");
+                var newName = Console.ReadLine();
+                course.Name = newName;
+                break;
+
+                case "C":
+                case "c":
+                Console.Write("Enter new course description: ");
+                var newDescription = Console.ReadLine();
+                course.Description = newDescription;
+                break;
+            }
         }
+
 
         public static void UpdateStudent(IList<Person> people)
         {
+            Console.Write("Enter exact name of student to update (case sensitive): ");
+            var name = Console.ReadLine();
+            IEnumerable<Person> query = people.Where(Person => Person.Name==name );   //find matching course code in Courses List
+            var student = query.ElementAt(0);   // extract matching course from query
 
+            Console.WriteLine("Which property would you like to update?");
+            Console.WriteLine("A. Name.");
+            Console.WriteLine("B. Classification.");
+            Console.WriteLine("C. Grades.");
+
+            Console.Write("Input: ");
+            var searchBy = Console.ReadLine();
+
+            switch(searchBy)
+            {
+                case "A":
+                case "a":
+                Console.Write("Enter new student name: ");
+                var newName = Console.ReadLine();
+                student.Name = newName;
+                break;
+
+                case "B":
+                case "b":
+                Console.Write("Enter new student classification: ");
+                var newClassification = Console.ReadLine();
+                student.Classification = newClassification;
+                break;
+
+                case "C":
+                case "c":
+                Console.Write("Enter new student grade: ");
+                var newGrades = Console.ReadLine();
+                var newGradesInt = int.Parse(newGrades);
+                student.Grades = newGradesInt;
+                break;
+            }
         }
 
-        public static void CreateAssignmentForCourse()
+
+        public static void CreateAssignmentForCourse(IList<Course> courses)
         {
+            Console.Write("Enter exact code of course to add an assignment to (case sensitive): ");
+            var code = Console.ReadLine();
 
+            IEnumerable<Course> query1 = courses.Where(Course => Course.Code==code );   //find matching course code in Courses List
+            var course = query1.ElementAt(0);   // extract matching course from query
+
+            Console.Write("Assignment Name: ");
+            var name = Console.ReadLine();
+
+            Console.Write("Description: ");
+            var description = Console.ReadLine();
+
+            Console.Write("Total Available Points: ");
+            var totalAvailablePoints = Console.ReadLine();
+            var totalAvailablePointsInt = int.Parse(totalAvailablePoints);
+
+            Console.Write("Due Date (ex. '1/1/2024 12:00:00 AM'): ");
+            var dueDate = Console.ReadLine();
+            DateTime dueDateOut; // by default, initializes to DateTime.MinValue
+            DateTime.TryParse(dueDate, out dueDateOut);
+
+            var myAssignment = new Assignment{Name=name, Description=description, TotalAvailablePoints=totalAvailablePointsInt, DueDate=dueDateOut};
+
+            course.Assignments.Add(myAssignment);
         }
+
 
         public static void PrintMenu()
         {
@@ -231,5 +411,27 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
             Console.WriteLine("Y. Print this menu again.");
             Console.WriteLine("Z. Exit Canvas.");
         }
+
+
+        public static void PrintCourseDetails(IList<Course> courses, int index)
+        {
+            Console.WriteLine(courses[index]);
+            Console.WriteLine("Roster:");
+            foreach(Person p in courses[index].Roster)
+            {
+                Console.WriteLine(p);
+            }
+            Console.WriteLine("Assignments:");
+            foreach(Assignment a in courses[index].Assignments)
+            {
+                Console.WriteLine(a);
+            }
+            Console.WriteLine("Modules:");
+            foreach(Module m in courses[index].Modules)
+            {
+                Console.WriteLine(m);
+            }
+        }
+
     }
 }
