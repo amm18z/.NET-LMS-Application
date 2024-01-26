@@ -1,27 +1,62 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Security.Permissions;
+using Canvas.Models;
 
 namespace Canvas //this is a namespace (logical), it has a corresponding assembly (physical) somewhere probably called "Canvas.DLL". I think?
 {
     internal class Program //this is class definition/declaration. 'internal' access modifier for class means this class can be accessed by any code in the same assembly
     {
-        private string myString; // example of a "field"
-
-        public static string MyString // example of a "property" with default getter and setter
-        {
-            get; set;
-        }
         static void Main(string[] args) //this main function has specified signature, which is how application knows where to pick up the program/where the entry point is (identical to java)
         {
-            List<int> ints = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9 }; // list object example
+            var people = new List<Person>();
 
-            foreach(var i in ints) //enumerated for loop example AND var example
+            Console.WriteLine("Welcome to Canvas!");
+            Console.WriteLine("A. kal;sfjl;sak");
+            Console.WriteLine("A. kal;sfjl;sak");
+
+            string? choice = Console.ReadLine();
+            switch(choice)
             {
-                Console.WriteLine(i);
+                case "A":
+                case "a":
+                AddPerson(people);
+                break;
             }
 
-            Console.WriteLine("Hello World!");
+            AddPerson(people);
 
-            MyString = "Some Value"; // implicitly calling the setter (infix)
+
+            foreach(Person p in people)
+            {
+                Console.WriteLine(p); //implicitly calls ToString(), which is we can print what we want by overloading ToString()
+            }
+
+            
+        }
+
+        public static void AddPerson(IList<Person> people) // static method = method that's not associated with an instance of a class
+        {                                                  // now using IList, so any List that implements IList can be used! just a way to make it more generic
+
+            Console.WriteLine("Name");
+            var name = Console.ReadLine();
+
+            Console.WriteLine("Classification");
+            var classification = Console.ReadLine();
+
+            Console.WriteLine("Grades");
+            var grades = Console.ReadLine();
+
+            Person myPerson;
+            if(int.TryParse(grades, out int gradesInt)) {
+                myPerson = new Person{Name=name, Classification=classification, Grades=gradesInt};
+            } else {
+                myPerson = new Person{Name=name, Classification=classification};
+            }
+            
+
+            people.Add(myPerson);
         }
     }
 }
