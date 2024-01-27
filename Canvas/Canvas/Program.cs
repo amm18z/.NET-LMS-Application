@@ -416,6 +416,7 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
         public static void PrintCourseDetails(IList<Course> courses, int index)
         {
             Console.WriteLine(courses[index]);
+            Console.WriteLine($"Description: {courses[index].Description}");
             Console.WriteLine("Roster:");
             foreach(Person p in courses[index].Roster)
             {
