@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Security.Permissions;
 using Canvas.Models;
+using Canvas.Services;
 
 namespace Canvas //this is a namespace (logical), it has a corresponding assembly (physical) somewhere probably called "Canvas.DLL". I think?
 {
@@ -10,7 +11,7 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
     {
         static void Main(string[] args) //this main function has specified signature, which is how application knows where to pick up the program/where the entry point is (identical to java)
         {
-            var people = new List<Person>();
+            var personService = PersonService.Current; //can exchange this list of Persons with anything else. OLD: var people = new List<Person>();
             var courses = new List<Course>();
 
             PrintMenu();
