@@ -1,4 +1,5 @@
 using System.Net.WebSockets;
+using System.Security.Cryptography.X509Certificates;
 using Canvas.Models;
 
 namespace Canvas.Services 
@@ -8,10 +9,11 @@ namespace Canvas.Services
     // if I try to access that to get a copy of the PersonService, it'll return the existing PersonService, or create a new one if it doesn't exist
     public class PersonService // we want to take list of clients, and attach it to this service
     {                          // why? because it'll eventually live in a database somewhere
-        private IList<Person> people;
+        private static IList<Person> people; // initialized by the constructor
 
+        private string? query;   // private backing field for Search method
         private static object lck;
-        private static PersonService instance;  // private backing field
+        private static PersonService instance;  // private backing field for Current property
         public static PersonService Current //has to be static so i can access from type level and not individual object
         {
             get {
@@ -28,25 +30,46 @@ namespace Canvas.Services
             }
         }
 
+        public IList<Person> People //Ilist is making it an interface, List implements it, as do other list types, just making it more generic
+        {
+            get
+            {
+                return people.Where( p => p.Name.ToUpper().Contains(query ?? string.Empty) );
+                        // || p.Classification.ToUpper().Contains(query ?? string.Empty) // just demonstrating that you can query more than one thing in such a statement
+            }
+            
+        }
+
         private PersonService()     // can make constructor private when using singleton pattern
         {
             people = new List<Person>();
         }
 
         /*
-        public PersonService(IList<Person> p)   // If you don't own entire pipe, it makes more sense to do it like this (pass in list that's managed by the service)
-        {
-            people = p;         //this is unit testable
-        }
+                    public PersonService(IList<Person> p)   // If you don't own entire pipe, it makes more sense to do it like this (pass in list that's managed by the service)
+                    {
+                        people = p;         //this is unit testable
+                    }
         */
 
         /*
-        public PersonService()      // If you own the entire pipe, it makes a lot of sense to do it like this.
-        {
-            people = new List<Person>();    // only problem is that you create a brand new list of clients each time you call new keyword on Client service (multiple sources of truth aka system of record)
-                                            // if you keep multiple copies of the list around, you'll have a real hard time syncing them for every user
-                                            // singleton pattern solves this
-        }
+                    public PersonService()      // If you own the entire pipe, it makes a lot of sense to do it like this.
+                    {
+                        people = new List<Person>();    // only problem is that you create a brand new list of clients each time you call new keyword on Client service (multiple sources of truth aka system of record)
+                                                        // if you keep multiple copies of the list around, you'll have a real hard time syncing them for every user
+                                                        // singleton pattern solves this
+                    }
         */
+
+        public IList<Person> Search(string query)
+        {
+            this.query = query;
+            return People; // calling Getter for People property
+        }
+
+        public static void CreateStudent(Person myPerson) // static method = method that's not associated with an instance of a class
+        {                                                  
+            people.Add(myPerson);
+        }
     }   
 }

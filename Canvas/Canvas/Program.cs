@@ -11,7 +11,6 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
     {
         static void Main(string[] args) //this main function has specified signature, which is how application knows where to pick up the program/where the entry point is (identical to java)
         {
-            var personService = PersonService.Current; //can exchange this list of Persons with anything else. OLD: var people = new List<Person>();
             var courses = new List<Course>();
 
             PrintMenu();
@@ -120,7 +119,7 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
         }
 
 
-        public static void CreateStudent(IList<Person> people) // static method = method that's not associated with an instance of a class
+        public static void BadCreateStudent(IList<Person> people) // static method = method that's not associated with an instance of a class
         {                                                  // now using IList, so any List that implements IList can be used! just a way to make it more generic
 
             Console.Write("Name: ");
@@ -134,12 +133,12 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
 
             Person myPerson;
             if(int.TryParse(grades, out int gradesInt)) {
-                myPerson = new Person{Name=name, Classification=classification, Grades=gradesInt}; //calling the setters for each of these properties
+                myPerson = new Person{Name=name, Classification=classification, Grades=gradesInt};
             } else {
                 myPerson = new Person{Name=name, Classification=classification};
             }
 
-            people.Add(myPerson);
+            PersonService.Current.CreateStudent(myPerson);
         }
 
 
