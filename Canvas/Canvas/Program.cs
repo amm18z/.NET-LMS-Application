@@ -119,7 +119,7 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
         }
 
 
-        public static void BadCreateStudent(IList<Person> people) // static method = method that's not associated with an instance of a class
+        public static void CreateStudent(IList<Person> people) // static method = method that's not associated with an instance of a class
         {                                                  // now using IList, so any List that implements IList can be used! just a way to make it more generic
 
             Console.Write("Name: ");
@@ -138,7 +138,7 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
                 myPerson = new Person{Name=name, Classification=classification};
             }
 
-            PersonService.Current.CreateStudent(myPerson);
+            PersonService.Current.Add(myPerson); //all Program.cs side interaction with the person list should be done through PersonService.Current
         }
 
 

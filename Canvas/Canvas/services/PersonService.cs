@@ -9,15 +9,15 @@ namespace Canvas.Services
     // if I try to access that to get a copy of the PersonService, it'll return the existing PersonService, or create a new one if it doesn't exist
     public class PersonService // we want to take list of clients, and attach it to this service
     {                          // why? because it'll eventually live in a database somewhere
-        private static IList<Person> people; // initialized by the constructor
+        private IList<Person> people; // initialized by the constructor
 
         private string? query;   // private backing field for Search method
-        private static object lck;
+        private static object _lock; //lock object should be static, because we only want one of them. If we didn't make it static, multiple threads could generate their own locks, defeating the purpose of the lock.
         private static PersonService instance;  // private backing field for Current property
         public static PersonService Current //has to be static so i can access from type level and not individual object
         {
             get {
-                lock(lck) //makes it thread safe, in case two people call this at the same time
+                lock(_lock) //makes it thread safe, in case two people call this at the same time
                 {
                     if(instance == null) {
                     instance = new PersonService();  //the magic sauce of the singleton pattern
@@ -30,12 +30,13 @@ namespace Canvas.Services
             }
         }
 
-        public IList<Person> People //Ilist is making it an interface, List implements it, as do other list types, just making it more generic
+        public IEnumerable<Person> People //.Where() returns IEnumerable, so now we are too. // OLD: Ilist is making it an interface, List implements it, as do other list types, just making it more generic
         {
             get
             {
                 return people.Where( p => p.Name.ToUpper().Contains(query ?? string.Empty) );
                         // || p.Classification.ToUpper().Contains(query ?? string.Empty) // just demonstrating that you can query more than one thing in such a statement
+                // .Where is purely for reading data from the list (and not writing to it) which is why it returns an IEnumerable
             }
             
         }
@@ -61,13 +62,15 @@ namespace Canvas.Services
                     }
         */
 
-        public IList<Person> Search(string query)
+        public IEnumerable<Person> Search(string query)
         {
+            // IList = interface implemented by a list you can perform CRUD on
+            // IEnumerable = implemented by a list structure you can read from or iterate over
             this.query = query;
             return People; // calling Getter for People property
         }
 
-        public static void CreateStudent(Person myPerson) // static method = method that's not associated with an instance of a class
+        public void Add(Person myPerson) // just made it not static so that it would work. Why? // OLD: static method = method that's not associated with an instance of a class
         {                                                  
             people.Add(myPerson);
         }
