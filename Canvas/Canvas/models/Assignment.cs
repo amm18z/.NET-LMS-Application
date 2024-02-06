@@ -10,9 +10,11 @@
 
         public DateTime DueDate{get; set;}
 
+        public Guid ID{get;}
+
         public Assignment() // default constructor, replaces automatic constructor
         {
-
+            ID = Guid.NewGuid();
         }
 
         public override string ToString()

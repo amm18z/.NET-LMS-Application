@@ -74,5 +74,10 @@ namespace Canvas.Services
         {                                                  
             people.Add(myPerson);
         }
+
+        public IEnumerable<Person> ReadOnlyList()
+        {
+            return people;
+        }
     }   
 }

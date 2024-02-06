@@ -10,6 +10,8 @@ namespace Canvas.Models
 
         public int Grades{get; set;}
 
+        public List<Submission>? Submissions{get; set;}
+
         public Person() // default constructor, replaces automatic constructor
         {
 

@@ -27,12 +27,12 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
                 {
                     case "A":
                     case "a":
-                    CreateCourse(courses); //Create a course and add it to a list of courses
+                    CreateCourse(); //Create a course and add it to a list of courses
                     break;
 
                     case "B":
                     case "b":
-                    CreateStudent(people); //Create a student and add it to a list of students
+                    CreateStudent(); //Create a student and add it to a list of students
                     break;
 
                     case "C":
@@ -57,12 +57,12 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
 
                     case "G":
                     case "g":
-                    ListStudents(people); //List all students
+                    ListStudents(); //List all students
                     break;
 
                     case "H":
                     case "h":
-                    SearchStudents(people); //Search for a student by name
+                    SearchStudents(); //Search for a student by name
                     break;
 
                     case "I":
@@ -98,7 +98,7 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
         }
 
 
-        public static void CreateCourse(IList<Course> courses)
+        public static void CreateCourse()
         {
             Console.Write("Code: ");
             var code = Console.ReadLine();
@@ -115,11 +115,11 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
 
             var myCourse = new Course{Code=code, Name=name, Description=description, Roster = myRoster, Assignments = myAssignments, Modules = myModules};
 
-            courses.Add(myCourse);
+            CourseService.Current.Add(myCourse);
         }
 
 
-        public static void CreateStudent(IList<Person> people) // static method = method that's not associated with an instance of a class
+        public static void CreateStudent() // static method = method that's not associated with an instance of a class
         {                                                  // now using IList, so any List that implements IList can be used! just a way to make it more generic
 
             Console.Write("Name: ");
@@ -131,9 +131,11 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
             Console.Write("Grades: ");
             var grades = Console.ReadLine();
 
+            var mySubmissions = new List<Submission>();
+
             Person myPerson;
             if(int.TryParse(grades, out int gradesInt)) {
-                myPerson = new Person{Name=name, Classification=classification, Grades=gradesInt};
+                myPerson = new Person{Name=name, Classification=classification, Grades=gradesInt,};
             } else {
                 myPerson = new Person{Name=name, Classification=classification};
             }
@@ -236,21 +238,24 @@ namespace Canvas //this is a namespace (logical), it has a corresponding assembl
         }
 
 
-        public static void ListStudents(IList<Person> people)
+        public static void ListStudents()
         {
+            
+            var people = PersonService.Current.ReadOnlyList();
+
             foreach(Person p in people)
             {
-                Console.WriteLine(p); //implicitly calls ToString(), which is we can print what we want by overloading ToString()
+                Console.WriteLine(p);
             }
         }
 
 
-        public static void SearchStudents(IList<Person> people)
+        public static void SearchStudents()
         {
             Console.Write("Enter name of student: ");
             var name = Console.ReadLine();
 
-            IEnumerable<Person> query = people.Where(Person => Person.Name.Contains(name) );
+            IEnumerable<Person> query = PersonService.Current.Search(name);
 
             foreach(Person p in query)
             {
