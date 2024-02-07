@@ -38,7 +38,7 @@ namespace Canvas.Services
         {
             get
             {
-                return courses.Where( p => p.Name.ToUpper().Contains(queryString ?? string.Empty) 
+                return courses.Where( p => p.Name.ToUpper().Contains(queryString ?? string.Empty)
                                         || p.Description.ToUpper().Contains(queryString ?? string.Empty));
                         
             }
