@@ -8,8 +8,8 @@
             Padding="30,0"
             Spacing="25">
 
-            <Button Text="Person View" Clicked="PersonViewClicked"/>
-            <Button Text="Course View" Clicked="CourseViewClicked"/>
+            <Button Text="People View" Clicked="PeopleViewClicked"/>
+            <Button Text="Courses View" Clicked="CoursesViewClicked"/>
 
             <!--<Image
                 Source="dotnet_bot.png"
