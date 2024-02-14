@@ -3,17 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Canvas", "Canvas\Canvas.csproj", "{85D469E7-F471-4F04-BF6F-CB0F7ADC146D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Canvas", "Canvas\Canvas.csproj", "{85D469E7-F471-4F04-BF6F-CB0F7ADC146D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Canvas", "Library.Canvas\Library.Canvas.csproj", "{10D838A4-1E90-4BE9-A995-E29800FBC9B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Canvas", "Library.Canvas\Library.Canvas.csproj", "{10D838A4-1E90-4BE9-A995-E29800FBC9B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAUI.Canvas", "MAUI.Canvas\MAUI.Canvas.csproj", "{280FE384-F203-4167-BF2B-8217726C9926}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{85D469E7-F471-4F04-BF6F-CB0F7ADC146D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -24,5 +23,17 @@ Global
 		{10D838A4-1E90-4BE9-A995-E29800FBC9B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10D838A4-1E90-4BE9-A995-E29800FBC9B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10D838A4-1E90-4BE9-A995-E29800FBC9B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{280FE384-F203-4167-BF2B-8217726C9926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{280FE384-F203-4167-BF2B-8217726C9926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{280FE384-F203-4167-BF2B-8217726C9926}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{280FE384-F203-4167-BF2B-8217726C9926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{280FE384-F203-4167-BF2B-8217726C9926}.Release|Any CPU.Build.0 = Release|Any CPU
+		{280FE384-F203-4167-BF2B-8217726C9926}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {76CFFB5B-FD26-4718-9246-7D0BBB66BD0D}
 	EndGlobalSection
 EndGlobal
