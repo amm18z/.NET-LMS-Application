@@ -7,7 +7,11 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
-            <Image
+
+            <Button Text="Person View" Clicked="PersonViewClicked"/>
+            <Button Text="Course View" Clicked="CourseViewClicked"/>
+
+            <!--<Image
                 Source="dotnet_bot.png"
                 HeightRequest="185"
                 Aspect="AspectFit"
@@ -29,7 +33,7 @@
                 Text="Click me" 
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Fill" />-->
         </VerticalStackLayout>
     </ScrollView>
 
