@@ -44,7 +44,14 @@ namespace Canvas.Services
 
         private PersonService()     // can make constructor private when using singleton pattern
         {
-            people = new List<Person>();
+            people = new List<Person>
+            {
+                new Person{Name = "TestPerson 1", Classification="Freshman", Grades=100},
+                new Person{Name = "TestPerson 2", Classification="Sophmore", Grades=90},
+                new Person{Name = "TestPerson 3", Classification="Junior", Grades=80},
+                new Person{Name = "TestPerson 4", Classification="Senior", Grades=70},
+                new Person{Name = "TestPerson 5"}
+            };
         }
 
         /*

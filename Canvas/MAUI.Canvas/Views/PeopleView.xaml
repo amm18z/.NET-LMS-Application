@@ -5,9 +5,12 @@
              Title="PeopleView">
     <VerticalStackLayout>
         <Label 
-            Text="People"
+            Text="PEOPLE!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <ListView
+            ItemsSource="{Binding People}">
+        </ListView>
         <Button Text="Back" Clicked="BackClicked"/>
     </VerticalStackLayout>
 </ContentPage>

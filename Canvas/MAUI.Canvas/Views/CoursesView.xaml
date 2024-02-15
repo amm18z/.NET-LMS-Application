@@ -5,7 +5,7 @@
              Title="CoursesView">
     <VerticalStackLayout>
         <Label 
-            Text="Courses"
+            Text="COURSES!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Button Text="Back" Clicked="BackClicked"/>
