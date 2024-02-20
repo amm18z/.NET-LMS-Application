@@ -11,6 +11,7 @@
         <ListView
             ItemsSource="{Binding People}">
         </ListView>
+        <Button Text="Add Person" Clicked="AddClicked"/>
         <Button Text="Back" Clicked="BackClicked"/>
     </VerticalStackLayout>
 </ContentPage>
