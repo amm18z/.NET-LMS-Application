@@ -12,13 +12,13 @@ namespace MAUI.Canvas.ViewModels
     internal class PeopleViewModel
     {
 
-        private PersonService personSvc;
+        private PersonService personSvc; //just like the helper did, the viewmodel holds onto an instantiation of relevant service
 
         public ObservableCollection<Person> People
         {
             get
             {
-                return new ObservableCollection<Person>(personSvc.People);
+                return new ObservableCollection<Person>(personSvc.People); //observable collection gives us updates for adds and removes for free (implements ICollection btw)
             }
         }
 
