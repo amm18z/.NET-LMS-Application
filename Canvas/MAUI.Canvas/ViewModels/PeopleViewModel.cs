@@ -41,7 +41,7 @@ namespace MAUI.Canvas.ViewModels
 
         public PeopleViewModel()
         {
-            personSvc = PersonService.Current;
+            personSvc = PersonService.Current;  // even though we have our own instantion personSvc, it's still the same singelton PersonService.Current
         }
 
         public void AddPerson()
@@ -57,5 +57,19 @@ namespace MAUI.Canvas.ViewModels
                                                 // so what this line is doing: radioing out to the frameowrk and saying anything that is bound to something called 'People' capital p, in the Binding Context that my current viewmodel is set to, 
                                                 // that means that you're going to have to redraw that specific UI element, it won't have to redraw anything else, but anything bound to People is gonna have to be redrawn, in our case that's the list box
         }
+
+        public void Refresh()
+        {
+            NotifyPropertyChanged(nameof(People));
+        }
+
+        public Person SelectedPerson { get; set; }
+
+        public void Remove()
+        {
+            personSvc.Remove(SelectedPerson);
+        }
+
+        
     }
 }

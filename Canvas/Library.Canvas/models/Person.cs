@@ -4,6 +4,9 @@ namespace Canvas.Models
 {
     public class Person // this is a public class (and not internal) because it's a model (akin to a record in a database)
     {
+
+        public Guid Id { get; set; }
+
         public string? Name{get; set;}
         
         public string? Classification{get; set;} // "freshman, sophmore, junior, senior"
@@ -14,7 +17,7 @@ namespace Canvas.Models
 
         public Person() // default constructor, replaces automatic constructor
         {
-
+            Id = Guid.NewGuid();
         }
 
         public override string ToString()

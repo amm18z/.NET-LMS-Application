@@ -83,5 +83,9 @@ namespace Canvas.Services
             people.Add(myPerson);
         }
 
+        public void Remove(Person myPerson) // passing in memory reference, which assumes we're on the same machine, will eventually have to use GUIDs instead
+        {
+            people.Remove(myPerson); 
+        }
     }   
 }

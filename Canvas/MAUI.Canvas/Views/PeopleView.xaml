@@ -2,16 +2,19 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MAUI.Canvas.Views.PeopleView"
-             Title="PeopleView">
+             Title="PeopleView"
+             NavigatedTo="ContentPage_NavigatedTo">
     <VerticalStackLayout>
         <Label 
             Text="PEOPLE!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <ListView
-            ItemsSource="{Binding People}">
+            ItemsSource="{Binding People}"
+            SelectedItem="{Binding SelectedPerson}">
         </ListView>
         <Button Text="Add Person" Clicked="AddClicked"/>
+        <Button Text="Remove Person" Clicked="RemoveClicked"/>
         <Button Text="Back" Clicked="BackClicked"/>
     </VerticalStackLayout>
 </ContentPage>
