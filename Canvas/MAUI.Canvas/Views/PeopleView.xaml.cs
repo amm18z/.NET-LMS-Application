@@ -29,7 +29,7 @@ public partial class PeopleView : ContentPage
 
     private void RemoveClicked(object sender, EventArgs e)
     {
-        (BindingContext as PeopleViewModel)?.Remove();
+        (BindingContext as PeopleViewModel)?.RemovePerson();
         (BindingContext as PeopleViewModel)?.Refresh();
     }
 }

@@ -8,7 +8,13 @@ namespace Canvas.Services
 
         private CourseService()    
         {
-            courses = new List<Course>();
+            courses = new List<Course>
+            {
+                new Course() {Code = "RED1101", Name = "Intro to RED", Description = "The fundamental concepts neccesary to gaining a solid foundation in RED."},
+                new Course() {Code = "BLU1101", Name = "Intro to BLUE", Description = "The fundamental concepts neccesary to gaining a solid foundation in BLUE."},
+                new Course() {Code = "YLW1101", Name = "Intro to YELLOW", Description = "The fundamental concepts neccesary to gaining a solid foundation in YELLOW."},
+                new Course() {Code = "GRN1101", Name = "Intro to GREEN", Description = "The fundamental concepts neccesary to gaining a solid foundation in GREEN."},
+            };
         }
 
         
@@ -42,6 +48,8 @@ namespace Canvas.Services
                                         || p.Description.ToUpper().Contains(queryString ?? string.Empty));
                         
             }
+
+
             
         }
 
@@ -57,6 +65,11 @@ namespace Canvas.Services
         public void Add(Course myCourse) 
         {                                                  
             courses.Add(myCourse);
+        }
+
+        public void RemoveCourse(Course myCourse)
+        {
+            courses.Remove(myCourse);
         }
 
         public void RemoveStudent(Course myCourse, Person myPerson) //removes specified student from specified course

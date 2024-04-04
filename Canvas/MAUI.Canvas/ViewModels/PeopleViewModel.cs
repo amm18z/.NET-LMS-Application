@@ -65,7 +65,7 @@ namespace MAUI.Canvas.ViewModels
 
         public Person SelectedPerson { get; set; }
 
-        public void Remove()
+        public void RemovePerson()
         {
             personSvc.Remove(SelectedPerson);
         }

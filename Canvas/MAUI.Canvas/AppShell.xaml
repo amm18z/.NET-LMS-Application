@@ -18,12 +18,16 @@
         ContentTemplate="{DataTemplate local2:PeopleView}"
         Route="People" />
     <ShellContent
-        Title="People"
+        Title="Person"
         ContentTemplate="{DataTemplate local3:PersonDialog}"
         Route="PersonDetail" />
     <ShellContent
         Title="Courses"
         ContentTemplate="{DataTemplate local2:CoursesView}"
         Route="Courses" />
+    <ShellContent
+        Title="Course"
+        ContentTemplate="{DataTemplate local3:CourseDialog}"
+        Route="CourseDetail" />
 
 </Shell>

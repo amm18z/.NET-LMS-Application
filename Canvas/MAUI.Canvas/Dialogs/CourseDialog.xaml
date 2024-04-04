@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MAUI.Canvas.Dialogs.PersonDialog"
-             Title="PersonDialog"
+             x:Class="MAUI.Canvas.Dialogs.CourseDialog"
+             Title="CourseDialog"
              NavigatedTo="ContentPage_NavigatedTo">
     <VerticalStackLayout>
         <Label 
-            Text="New Person"
+            Text="New Course"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Grid>
@@ -20,12 +20,12 @@
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Text="Name" Grid.Column="0" Grid.Row="0"/>
-            <Entry Text="{Binding Name}" Grid.Column="1" Grid.Row="0"/>
-            <Label Text="Classification" Grid.Column="0" Grid.Row="1"/>
-            <Entry Text="{Binding Classification}" Grid.Column="1" Grid.Row="1"/>
-            <Label Text="Grades" Grid.Column="0" Grid.Row="2"/>
-            <Entry Text="{Binding Grades}" Grid.Column="1" Grid.Row="2"/>
+            <Label Text="Code" Grid.Column="0" Grid.Row="0"/>
+            <Entry Text="{Binding Code}" Grid.Column="1" Grid.Row="0"/>
+            <Label Text="Name" Grid.Column="0" Grid.Row="1"/>
+            <Entry Text="{Binding Name}" Grid.Column="1" Grid.Row="1"/>
+            <Label Text="Description" Grid.Column="0" Grid.Row="2"/>
+            <Entry Text="{Binding Description}" Grid.Column="1" Grid.Row="2"/>
         </Grid>
         <Button Text="Ok" Clicked="OkClicked"/>
         <Button Text="Cancel" Clicked="CancelClicked"/>

@@ -10,7 +10,7 @@ namespace MAUI.Canvas.ViewModels
 {
     public class PersonDialogViewModel
     {
-        private Person? person;  // pass through methods
+        private Person? person;  // pass through properties
 
         //private string name;
         public string Name
@@ -31,6 +31,16 @@ namespace MAUI.Canvas.ViewModels
             { 
                 if (person == null) person = new Person();
                 person.Classification = value; 
+            }
+        }
+
+        public int Grades   // kind of a place holder because 'Grades' on 'Person' model isn't really intended to be an integer.
+        {
+            get { return person?.Grades ?? 0; }
+            set
+            {
+                if (person == null) person = new Person();
+                person.Grades = value;
             }
         }
 

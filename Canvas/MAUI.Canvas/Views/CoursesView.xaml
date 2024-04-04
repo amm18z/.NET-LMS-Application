@@ -2,12 +2,19 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MAUI.Canvas.Views.CoursesView"
-             Title="CoursesView">
+             Title="CoursesView"
+             NavigatedTo="ContentPage_NavigatedTo">
     <VerticalStackLayout>
         <Label 
             Text="COURSES!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <ListView
+            ItemsSource="{Binding Courses}"
+            SelectedItem="{Binding SelectedCourse}">
+        </ListView>
+        <Button Text="Add Course" Clicked="AddClicked"/>
+        <Button Text="Remove Course" Clicked="RemoveClicked"/>
         <Button Text="Back" Clicked="BackClicked"/>
     </VerticalStackLayout>
 </ContentPage>
