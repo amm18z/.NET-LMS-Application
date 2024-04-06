@@ -35,7 +35,7 @@ namespace Canvas.Services
         {
             get
             {
-                return people.Where( p => p.Name.ToUpper().Contains(queryString ?? string.Empty) ); //if query isn't set, the where statement will return a list of all clients, because all strings contain the empty string. 
+                return people.Where( p => p.Name?.ToUpper().Contains(queryString?.ToUpper() ?? string.Empty) ?? false ); //if query isn't set, the where statement will return a list of all clients, because all strings contain the empty string. 
                                     // || p.Classification.ToUpper().Contains(query ?? string.Empty) // just demonstrating that you can query more than one thing in such a statement
                 // .Where is purely for reading data from the list (and not writing to it) which is why it returns an IEnumerable
             }

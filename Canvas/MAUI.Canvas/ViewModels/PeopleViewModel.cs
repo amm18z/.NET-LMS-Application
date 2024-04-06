@@ -71,12 +71,7 @@ namespace MAUI.Canvas.ViewModels
         }
 
 
-        private string query;
-        public string Query
-        {
-            get { return query; }
-            set { query = value.ToUpper(); }
-        }
+        public string Query { get; set; }   // search box in PeopleView is bound to Query
 
         public void Search()
         {
