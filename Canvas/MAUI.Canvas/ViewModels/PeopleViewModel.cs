@@ -70,6 +70,19 @@ namespace MAUI.Canvas.ViewModels
             personSvc.Remove(SelectedPerson);       
         }
 
+
+        private string query;
+        public string Query
+        {
+            get { return query; }
+            set { query = value.ToUpper(); }
+        }
+
+        public void Search()
+        {
+            personSvc.Search(Query);
+            Refresh();
+        }
         
     }
 }

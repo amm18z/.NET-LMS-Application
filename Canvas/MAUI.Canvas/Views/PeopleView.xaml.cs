@@ -43,4 +43,9 @@ public partial class PeopleView : ContentPage
         }
         
     }
+
+    private void SearchClicked(object sender, EventArgs e)
+    {
+        (BindingContext as PeopleViewModel)?.Search();
+    }
 }
