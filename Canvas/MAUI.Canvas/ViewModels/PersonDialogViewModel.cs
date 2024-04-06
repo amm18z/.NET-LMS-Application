@@ -44,16 +44,24 @@ namespace MAUI.Canvas.ViewModels
             }
         }
 
-        public PersonDialogViewModel()
+        public PersonDialogViewModel(int pId)
         {
-            person = new Person();
+            if(pId == 0)        // Person does not yet exist
+            {
+                person = new Person();
+            }
+            else
+            {
+                person = PersonService.Current.Get(pId) ?? new Person();   // Update button will display this person when we click on it
+            }
+            
         }
 
         public void AddPerson()
         {
             if(person != null)
             {
-                PersonService.Current.Add(person) ;
+                PersonService.Current.AddOrUpdate(person) ;
             }
         }
     }

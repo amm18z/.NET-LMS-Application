@@ -14,7 +14,7 @@ public partial class PeopleView : ContentPage
     {
         //(BindingContext as PeopleViewModel)?.AddPerson();    // keyword 'as', safety mechanism built into C#, is 'type coersion' which is a safe version of casting
                                                              // what it does: if BindingContext actually isn't a PeopleViewModel (the cast fails) you'll always just get null
-        Shell.Current.GoToAsync("//PersonDetail");
+        Shell.Current.GoToAsync("//PersonDetail?personId=0");
     }
 
     private void BackClicked(object sender, EventArgs e)
@@ -31,5 +31,16 @@ public partial class PeopleView : ContentPage
     {
         (BindingContext as PeopleViewModel)?.RemovePerson();
         (BindingContext as PeopleViewModel)?.Refresh();
+    }
+
+    private void UpdateClicked(object sender, EventArgs e)
+    {
+        var myPersonId = (BindingContext as PeopleViewModel)?.SelectedPerson?.Id;
+
+        if(myPersonId != null)
+        {
+            Shell.Current.GoToAsync($"//PersonDetail?personId={myPersonId}");
+        }
+        
     }
 }

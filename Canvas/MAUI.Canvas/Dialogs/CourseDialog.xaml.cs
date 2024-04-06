@@ -24,6 +24,6 @@ public partial class CourseDialog : ContentPage
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
         BindingContext = new CourseDialogViewModel();   // explicitly resetting viewmodel every time we navigate to coursedialog, gives us a brand new course object every time.
-                                                        // otherwise, 
+                                                        // otherwise, we'll get what we previously typed into the boxes every time
     }
 }

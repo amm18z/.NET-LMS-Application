@@ -46,11 +46,11 @@ namespace Canvas.Services
         {
             people = new List<Person>
             {
-                new Person{Name = "TestPerson 1", Classification="Freshman", Grades=100},
-                new Person{Name = "TestPerson 2", Classification="Sophmore", Grades=90},
-                new Person{Name = "TestPerson 3", Classification="Junior", Grades=80},
-                new Person{Name = "TestPerson 4", Classification="Senior", Grades=70},
-                new Person{Name = "TestPerson 5"}
+                new Person{Name = "TestPerson 1", Classification="Freshman", Grades=100, Id=1},
+                new Person{Name = "TestPerson 2", Classification="Sophmore", Grades=90, Id=2},
+                new Person{Name = "TestPerson 3", Classification="Junior", Grades=80, Id = 3},
+                new Person{Name = "TestPerson 4", Classification="Senior", Grades=70, Id=4},
+                new Person{Name = "TestPerson 5", Id=5}
             };
         }
 
@@ -78,14 +78,34 @@ namespace Canvas.Services
             return People; // calling Getter for People property
         }
 
-        public void Add(Person myPerson) // just made it not static so that it would work. Why? // OLD: static method = method that's not associated with an instance of a class
-        {                                                  
-            people.Add(myPerson);
+        public void AddOrUpdate(Person myPerson) // just made it not static so that it would work. Why? // OLD: static method = method that's not associated with an instance of a class
+        {
+            if(myPerson.Id <= 0)    // no Id exists yet, so give new Id
+            {
+                myPerson.Id = LastId + 1;
+                people.Add(myPerson);       // only adding when new person
+            } 
+
+            // updating occurs for free, only because of smart pointers. (will no longer update when we distribute application across client and server)
         }
 
         public void Remove(Person myPerson) // passing in memory reference, which assumes we're on the same machine, will eventually have to use GUIDs instead
         {
             people.Remove(myPerson); 
+        }
+
+        public Person? Get(int id)          // for converting an ID to a reference
+        {
+            return people.FirstOrDefault(p => p.Id == id);  // have to use FirstOrDefault() instead of Where(), because Where() has no idea ID supposed to be unique
+        }
+
+        private int LastId
+        {
+            get
+            {
+                return people.Select(p => p.Id).Max();  // Select() takes a property of a list, and makes a new list of that property, bascially a SQL select
+                                                        // Max() is getting the highest ID from that list.
+            }
         }
     }   
 }

@@ -46,7 +46,7 @@ namespace MAUI.Canvas.ViewModels
 
         public void AddPerson()
         {
-            personSvc.Add(new Person { Name = "This is a new person" });
+            personSvc.AddOrUpdate(new Person { Name = "This is a new person" });
             NotifyPropertyChanged(nameof(People));   //if we left this blank, NotifyPropertyChange would, through reflection, automatically pass in the name of the method it's called from as the parameter
                                                 // Which in this case would be AddPerson(). "Terminator levels of weird". "Code has been told that's it's living inside a simulation"
 
@@ -67,7 +67,7 @@ namespace MAUI.Canvas.ViewModels
 
         public void RemovePerson()
         {
-            personSvc.Remove(SelectedPerson);
+            personSvc.Remove(SelectedPerson);       
         }
 
         

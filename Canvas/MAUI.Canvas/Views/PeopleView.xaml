@@ -14,6 +14,7 @@
             SelectedItem="{Binding SelectedPerson}">
         </ListView>
         <Button Text="Add Person" Clicked="AddClicked"/>
+        <Button Text="Update Person" Clicked="UpdateClicked"/>
         <Button Text="Remove Person" Clicked="RemoveClicked"/>
         <Button Text="Back" Clicked="BackClicked"/>
     </VerticalStackLayout>
