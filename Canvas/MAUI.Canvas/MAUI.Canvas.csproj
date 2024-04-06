@@ -70,16 +70,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\StudentView.xaml.cs">
+	    <DependentUpon>StudentView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\InstructorView.xaml.cs">
+	    <DependentUpon>InstructorView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Dialogs\CourseDialog.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Dialogs\PersonDialog.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CoursesView.xaml">
+	  <MauiXaml Update="Views\StudentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\PeopleView.xaml">
+	  <MauiXaml Update="Views\InstructorView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

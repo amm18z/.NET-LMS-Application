@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MAUI.Canvas.ViewModels
 {
-    internal class CoursesViewModel : INotifyPropertyChanged
+    internal class StudentViewModel : INotifyPropertyChanged
     {
         private CourseService courseSvc; //just like the helper did, the viewmodel holds onto an instantiation of relevant service
 
@@ -34,7 +34,7 @@ namespace MAUI.Canvas.ViewModels
             }
         }
 
-        public CoursesViewModel()
+        public StudentViewModel()
         {
             courseSvc = CourseService.Current;
         }

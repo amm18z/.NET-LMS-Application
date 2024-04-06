@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MAUI.Canvas.Views.PeopleView"
-             Title="PeopleView"
+             x:Class="MAUI.Canvas.Views.InstructorView"
+             Title="Instructor View"
              NavigatedTo="ContentPage_NavigatedTo">
     <VerticalStackLayout>
         <Grid>
@@ -17,9 +17,9 @@
             ItemsSource="{Binding People}"
             SelectedItem="{Binding SelectedPerson}">
         </ListView>
-        <Button Text="Add Person" Clicked="AddClicked"/>
-        <Button Text="Update Person" Clicked="UpdateClicked"/>
-        <Button Text="Remove Person" Clicked="RemoveClicked"/>
+        <Button Text="Add Student" Clicked="AddClicked"/>
+        <Button Text="Update Student" Clicked="UpdateClicked"/>
+        <Button Text="Remove Student" Clicked="RemoveClicked"/>
         <Button Text="Back" Clicked="BackClicked"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -8,8 +8,15 @@
             Padding="30,0"
             Spacing="25">
 
-            <Button Text="People View" Clicked="PeopleViewClicked"/>
-            <Button Text="Courses View" Clicked="CoursesViewClicked"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Text="I AM AN INSTRUCTOR" Grid.Column="0" Clicked="InstructorViewClicked"/>
+                <Button Text="I AM A STUDENT" Grid.Column="1" Clicked="StudentViewClicked"/>
+            </Grid>
+            
 
             <!--<Image
                 Source="dotnet_bot.png"

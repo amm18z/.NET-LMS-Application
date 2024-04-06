@@ -4,8 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MAUI.Canvas"
-    xmlns:local2="clr-namespace:MAUI.Canvas.Views"
-    xmlns:local3="clr-namespace:MAUI.Canvas.Dialogs"
+    xmlns:views="clr-namespace:MAUI.Canvas.Views"
+    xmlns:dialogs="clr-namespace:MAUI.Canvas.Dialogs"
     Shell.FlyoutBehavior="Disabled"
     Title="MAUI.Canvas">
 
@@ -14,20 +14,20 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
     <ShellContent
-        Title="People"
-        ContentTemplate="{DataTemplate local2:PeopleView}"
-        Route="People" />
+        Title="Instructor View"
+        ContentTemplate="{DataTemplate views:InstructorView}"
+        Route="Instructor" />
     <ShellContent
-        Title="Person"
-        ContentTemplate="{DataTemplate local3:PersonDialog}"
+        Title="Person Dialog"
+        ContentTemplate="{DataTemplate dialogs:PersonDialog}"
         Route="PersonDetail" />
     <ShellContent
-        Title="Courses"
-        ContentTemplate="{DataTemplate local2:CoursesView}"
-        Route="Courses" />
+        Title="Student View"
+        ContentTemplate="{DataTemplate views:StudentView}"
+        Route="Student" />
     <ShellContent
-        Title="Course"
-        ContentTemplate="{DataTemplate local3:CourseDialog}"
+        Title="Course Dialog"
+        ContentTemplate="{DataTemplate dialogs:CourseDialog}"
         Route="CourseDetail" />
 
 </Shell>

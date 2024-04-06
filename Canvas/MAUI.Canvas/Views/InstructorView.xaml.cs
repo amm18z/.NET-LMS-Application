@@ -2,18 +2,18 @@ using MAUI.Canvas.ViewModels;
 
 namespace MAUI.Canvas.Views;
 
-public partial class PeopleView : ContentPage
+public partial class InstructorView : ContentPage
 {
-	public PeopleView()
+	public InstructorView()
 	{
         InitializeComponent();
-        BindingContext = new PeopleViewModel(); // very MVVM
+        BindingContext = new InstructorViewModel(); // very MVVM
 	}
 
     private void AddClicked(object sender, EventArgs e) // event handlers are not MVVM, they would have commanding set up for you in the real world
     {
-        //(BindingContext as PeopleViewModel)?.AddPerson();    // keyword 'as', safety mechanism built into C#, is 'type coersion' which is a safe version of casting
-                                                             // what it does: if BindingContext actually isn't a PeopleViewModel (the cast fails) you'll always just get null
+        //(BindingContext as InstructorViewModel)?.AddPerson();    // keyword 'as', safety mechanism built into C#, is 'type coersion' which is a safe version of casting
+                                                             // what it does: if BindingContext actually isn't a InstructorViewModel (the cast fails) you'll always just get null
         Shell.Current.GoToAsync("//PersonDetail?personId=0");
     }
 
@@ -24,18 +24,18 @@ public partial class PeopleView : ContentPage
 
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
-        (BindingContext as PeopleViewModel)?.Refresh();
+        (BindingContext as InstructorViewModel)?.Refresh();
     }
 
     private void RemoveClicked(object sender, EventArgs e)
     {
-        (BindingContext as PeopleViewModel)?.RemovePerson();
-        (BindingContext as PeopleViewModel)?.Refresh();
+        (BindingContext as InstructorViewModel)?.RemovePerson();
+        (BindingContext as InstructorViewModel)?.Refresh();
     }
 
     private void UpdateClicked(object sender, EventArgs e)
     {
-        var myPersonId = (BindingContext as PeopleViewModel)?.SelectedPerson?.Id;
+        var myPersonId = (BindingContext as InstructorViewModel)?.SelectedPerson?.Id;
 
         if(myPersonId != null)
         {
@@ -46,7 +46,7 @@ public partial class PeopleView : ContentPage
 
     private void SearchClicked(object sender, EventArgs e)
     {
-        (BindingContext as PeopleViewModel)?.Search();
-        (BindingContext as PeopleViewModel)?.Refresh();
+        (BindingContext as InstructorViewModel)?.Search();
+        (BindingContext as InstructorViewModel)?.Refresh();
     }
 }

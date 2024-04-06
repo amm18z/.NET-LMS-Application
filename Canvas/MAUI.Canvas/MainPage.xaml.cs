@@ -9,14 +9,14 @@
             InitializeComponent();
         }
 
-        private void PeopleViewClicked(object sender, EventArgs e)
+        private void InstructorViewClicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("//People");
+            Shell.Current.GoToAsync("//Instructor");
         }
 
-        private void CoursesViewClicked(object sender, EventArgs e)
+        private void StudentViewClicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("//Courses");
+            Shell.Current.GoToAsync("//Student");
         }
 
         

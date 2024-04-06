@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MAUI.Canvas.ViewModels
 {
-    internal class PeopleViewModel : INotifyPropertyChanged     //looks like inheritence from C++, actually it's 'implementation'. we must implement in our class (PeopleViewModel) anything that this abstract interface requires
+    internal class InstructorViewModel : INotifyPropertyChanged     //looks like inheritence from C++, actually it's 'implementation'. we must implement in our class (PeopleViewModel) anything that this abstract interface requires
                                                                 // So INotifyPropertyChanged is an interface that requires 'PropertyChangedEventHandler' and the NotifyPropertyChanged() method we have here
     {
 
@@ -39,7 +39,7 @@ namespace MAUI.Canvas.ViewModels
             }
         }
 
-        public PeopleViewModel()
+        public InstructorViewModel()
         {
             personSvc = PersonService.Current;  // even though we have our own instantion personSvc, it's still the same singelton PersonService.Current
         }
