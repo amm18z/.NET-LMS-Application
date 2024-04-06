@@ -81,7 +81,6 @@ namespace MAUI.Canvas.ViewModels
         public void Search()
         {
             personSvc.Search(Query);
-            Refresh();
         }
         
     }
