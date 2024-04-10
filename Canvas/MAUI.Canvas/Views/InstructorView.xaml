@@ -4,22 +4,56 @@
              x:Class="MAUI.Canvas.Views.InstructorView"
              Title="Instructor View"
              NavigatedTo="ContentPage_NavigatedTo">
-    <VerticalStackLayout>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Entry Text="{Binding Query}" Grid.Column="0"/>
-            <Button Text="Search" Clicked="SearchClicked" Grid.Column="1"/>
-        </Grid>
-        <ListView
-            ItemsSource="{Binding People}"
-            SelectedItem="{Binding SelectedPerson}">
-        </ListView>
-        <Button Text="Add Student" Clicked="AddClicked"/>
-        <Button Text="Update Student" Clicked="UpdateClicked"/>
-        <Button Text="Remove Student" Clicked="RemoveClicked"/>
-        <Button Text="Back" Clicked="BackClicked"/>
-    </VerticalStackLayout>
+    <ScrollView VerticalScrollBarVisibility="Always">
+        <VerticalStackLayout Margin="20" Spacing="10">
+
+            <Label Text="Courses"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Entry Text="{Binding CoursesQuery}" Grid.Column="0"/>
+                <Button Text="Search" Clicked="SearchCoursesClicked" Grid.Column="1"/>
+            </Grid>
+
+            <ListView
+                ItemsSource="{Binding Courses}"
+                SelectedItem="{Binding SelectedCourse}">
+            </ListView>
+
+            <Button Text="Add Course" Clicked="AddCourseClicked"/>
+            <Button Text="Update/View Details of Course" Clicked="UpdateCourseClicked"/>
+            <Button Text="Remove Course" Clicked="RemoveCourseClicked"/>
+
+            <Label Text=""/>
+            <Label Text=""/>
+            <Label Text=""/>
+
+            <Label Text="Students"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Entry Text="{Binding PeopleQuery}" Grid.Column="0"/>
+                <Button Text="Search" Clicked="SearchPeopleClicked" Grid.Column="1"/>
+            </Grid>
+
+            <ListView
+                ItemsSource="{Binding People}"
+                SelectedItem="{Binding SelectedPerson}">
+            </ListView>
+
+            <Button Text="Add Student" Clicked="AddPersonClicked"/>
+            <Button Text="Update Student" Clicked="UpdatePersonClicked"/>
+            <Button Text="Remove Student" Clicked="RemovePersonClicked"/>
+
+            <Label Text=""/>
+            <Button Text="Add Selected Student to Selected Course" Clicked="AddStudentToCourseClicked"/>
+            <Button Text="Back" Clicked="BackClicked"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+    
 </ContentPage>

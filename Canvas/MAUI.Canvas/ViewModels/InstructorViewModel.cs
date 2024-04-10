@@ -16,8 +16,7 @@ namespace MAUI.Canvas.ViewModels
     {
 
         private PersonService personSvc; //just like the helper did, the viewmodel holds onto an instantiation of relevant service
-
-
+        private CourseService courseSvc;
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -27,7 +26,49 @@ namespace MAUI.Canvas.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));      //'this' = thing that's sending this event (BindingContext), 'propertyName' = name of property that changed, basically makes sure only this will be redrawn
         }
 
+        public InstructorViewModel()
+        {
+            personSvc = PersonService.Current;  // even though we have our own instantion personSvc, it's still the same singelton PersonService.Current
+            courseSvc = CourseService.Current;
+        }
 
+
+
+
+
+        // COURSES CODE
+        public ObservableCollection<Course> Courses
+        {
+            get
+            {
+                return new ObservableCollection<Course>(courseSvc.Courses); //observable collection gives us updates for adds and removes for free (implements ICollection btw)
+            }
+        }
+
+        public string CoursesQuery { get; set; }   // Courses search box in InstructorView is bound to CoursesQuery
+
+        public void SearchCourses()
+        {
+            courseSvc.Search(CoursesQuery);
+        }
+
+        public void RefreshCourses()
+        {
+            NotifyPropertyChanged(nameof(Courses));
+        }
+
+        public Course SelectedCourse { get; set; }
+
+        public void RemoveCourse()
+        {
+            courseSvc.RemoveCourse(SelectedCourse);
+        }
+
+        
+
+
+
+        // PEOPLE CODE
 
         public ObservableCollection<Person> People
         {
@@ -39,26 +80,14 @@ namespace MAUI.Canvas.ViewModels
             }
         }
 
-        public InstructorViewModel()
+        public string PeopleQuery { get; set; }   // search box in PeopleView is bound to Query
+
+        public void SearchPeople()
         {
-            personSvc = PersonService.Current;  // even though we have our own instantion personSvc, it's still the same singelton PersonService.Current
+            personSvc.Search(PeopleQuery);
         }
 
-        public void AddPerson()
-        {
-            personSvc.AddOrUpdate(new Person { Name = "This is a new person" });
-            NotifyPropertyChanged(nameof(People));   //if we left this blank, NotifyPropertyChange would, through reflection, automatically pass in the name of the method it's called from as the parameter
-                                                // Which in this case would be AddPerson(). "Terminator levels of weird". "Code has been told that's it's living inside a simulation"
-
-                                                // "People" here is, being a hardcoded value, is an example of a 'magic string'. "They're horrible, they're the thing all of your nightmares are made of"
-                                                // user could click button, codebehind will run, but user may never see change reflected.
-                                                // solution: we change "People" -> nameof(People)
-
-                                                // so what this line is doing: radioing out to the frameowrk and saying anything that is bound to something called 'People' capital p, in the Binding Context that my current viewmodel is set to, 
-                                                // that means that you're going to have to redraw that specific UI element, it won't have to redraw anything else, but anything bound to People is gonna have to be redrawn, in our case that's the list box
-        }
-
-        public void Refresh()
+        public void RefreshPeople()
         {
             NotifyPropertyChanged(nameof(People));
         }
@@ -71,11 +100,15 @@ namespace MAUI.Canvas.ViewModels
         }
 
 
-        public string Query { get; set; }   // search box in PeopleView is bound to Query
+        
 
-        public void Search()
+        public void AddStudentToCourse()
         {
-            personSvc.Search(Query);
+            if(SelectedPerson != null)
+            {
+                SelectedCourse?.Roster?.Add(SelectedPerson);
+            }
+            
         }
         
     }

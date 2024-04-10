@@ -46,11 +46,17 @@ namespace Canvas.Services
         {
             people = new List<Person>
             {
-                new Person{Name = "TestPerson 1", Classification="Freshman", Grades=100, Id=1},
-                new Person{Name = "TestPerson 2", Classification="Sophmore", Grades=90, Id=2},
-                new Person{Name = "TestPerson 3", Classification="Junior", Grades=80, Id = 3},
-                new Person{Name = "TestPerson 4", Classification="Senior", Grades=70, Id=4},
-                new Person{Name = "TestPerson 5", Id=5}
+                new Person{Name = "Patrick Star", Classification="Freshman", Grades=60, Id=1},
+                new Person{Name = "Spongebob Squarepants", Classification="Sophmore", Grades=70, Id=2},
+                new Person{Name = "Squidward Tentacles", Classification="Junior", Grades=80, Id = 3},
+                new Person{Name = "Eugene Krabs", Classification="Senior", Grades=90, Id=4},
+                new Person{Name = "Pearl Krabs", Classification="Sophmore", Grades=75, Id=5},
+                new Person{Name = "Sheldon Plankton", Classification="Graduate", Grades=100, Id=6},
+                new Person{Name = "Karen Plankton", Classification="Senior", Grades=100, Id=7},
+                new Person{Name = "Sandy Cheeks", Classification="Graduate", Grades=110, Id=8},
+                new Person{Name = "Smitty Werbenjägermanjensen", Classification="Junior", Grades=10, Id=9},
+                new Person{Name = "Penelope Puff", Classification="Sophmore", Grades=85, Id=10},
+                new Person{Name = "Gary Snail", Classification="Mascot", Grades=0, Id=11}
             };
         }
 

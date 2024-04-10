@@ -20,7 +20,7 @@
     <ShellContent
         Title="Person Dialog"
         ContentTemplate="{DataTemplate dialogs:PersonDialog}"
-        Route="PersonDetail" />
+        Route="PersonDialog" />
     <ShellContent
         Title="Student View"
         ContentTemplate="{DataTemplate views:StudentView}"
@@ -28,6 +28,10 @@
     <ShellContent
         Title="Course Dialog"
         ContentTemplate="{DataTemplate dialogs:CourseDialog}"
-        Route="CourseDetail" />
+        Route="CourseDialog" />
+    <ShellContent
+        Title="Course Details Dialog"
+        ContentTemplate="{DataTemplate dialogs:CourseDetailsDialog}"
+        Route="CourseDetails" />
 
 </Shell>

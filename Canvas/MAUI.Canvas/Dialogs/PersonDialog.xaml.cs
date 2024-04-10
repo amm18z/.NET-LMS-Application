@@ -19,13 +19,13 @@ public partial class PersonDialog : ContentPage
 
     private void CancelClicked(object sender, EventArgs e)
     {
-        Shell.Current.GoToAsync("//People");
+        Shell.Current.GoToAsync("//Instructor");
     }
 
     private void OkClicked(object sender, EventArgs e)
     {
         (BindingContext as PersonDialogViewModel)?.AddPerson();
-        Shell.Current.GoToAsync("//People");
+        Shell.Current.GoToAsync("//Instructor");
     }
 
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)

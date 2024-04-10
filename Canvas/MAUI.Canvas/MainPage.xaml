@@ -4,9 +4,7 @@
              x:Class="MAUI.Canvas.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
+        <VerticalStackLayout Margin="20" Spacing="10">
 
             <Grid>
                 <Grid.ColumnDefinitions>

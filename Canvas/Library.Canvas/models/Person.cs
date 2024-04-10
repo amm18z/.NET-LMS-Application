@@ -23,7 +23,7 @@ namespace Canvas.Models
 
         public override string ToString()
         {
-            return $"{Classification}, {Name} - {Grades}";
+            return $" {Name}, {Classification} - {Grades}";
         }
     }
 

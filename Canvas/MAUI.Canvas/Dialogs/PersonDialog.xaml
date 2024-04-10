@@ -4,7 +4,8 @@
              x:Class="MAUI.Canvas.Dialogs.PersonDialog"
              Title="PersonDialog"
              NavigatedTo="ContentPage_NavigatedTo">
-    <VerticalStackLayout>
+ 
+    <VerticalStackLayout Margin="20" Spacing="10">
         <Label 
             Text="New Person"
             VerticalOptions="Center" 

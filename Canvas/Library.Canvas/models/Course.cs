@@ -25,7 +25,7 @@ namespace Canvas.Models
 
         public override string ToString() //equivalent to overloading the insertion operation in C++ so that you can cout a custom class object
         {
-            return $"{Code} - {Name}"; // "13. When selected from a list or search results, a course should show all its information. Only the course code and name should show in the lists."
+            return $"{Code} - {Name} | Students: {Roster?.Count()}"; // "13. When selected from a list or search results, a course should show all its information. Only the course code and name should show in the lists."
         }
     }
 

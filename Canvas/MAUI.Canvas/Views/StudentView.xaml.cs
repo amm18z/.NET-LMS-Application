@@ -10,11 +10,32 @@ public partial class StudentView : ContentPage
         BindingContext = new StudentViewModel(); // very MVVM
     }
 
-    private void AddClicked(object sender, EventArgs e) // event handlers are not MVVM, they would have commanding set up for you in the real world
+    private void SearchStudentsClicked(object sender, EventArgs e)
     {
-        //(BindingContext as StudentViewModel)?.AddCourse();    // keyword 'as', safety mechanism built into C#, is 'type coersion' which is a safe version of casting
-        // what it does: if BindingContext actually isn't a StudentViewModel (the cast fails) you'll always just get null
-        Shell.Current.GoToAsync("//CourseDetail");
+        (BindingContext as StudentViewModel)?.SearchStudents();
+        (BindingContext as StudentViewModel)?.RefreshStudents();
+    }
+
+    private void LoginClicked(object sender, EventArgs e)
+    {
+        (BindingContext as StudentViewModel)?.Login();
+        (BindingContext as StudentViewModel)?.RefreshCourses();
+    }
+
+    private void SubmitClicked(object sender, EventArgs e) 
+    {
+        
+        //Shell.Current.GoToAsync("//CourseDetail");
+    }
+
+    private void CourseDetailsClicked(object sender, EventArgs e)
+    {
+        var myCourseId = (BindingContext as StudentViewModel)?.SelectedCourse?.Id;
+
+        if (myCourseId != null)
+        {
+            Shell.Current.GoToAsync($"//CourseDetails?courseId={myCourseId}");
+        }
     }
 
     private void BackClicked(object sender, EventArgs e)
@@ -24,12 +45,9 @@ public partial class StudentView : ContentPage
 
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
-        (BindingContext as StudentViewModel)?.Refresh();
+        (BindingContext as StudentViewModel)?.RefreshCourses();
+        (BindingContext as StudentViewModel)?.RefreshStudents();
     }
 
-    private void RemoveClicked(object sender, EventArgs e)
-    {
-        (BindingContext as StudentViewModel)?.RemoveCourse();
-        (BindingContext as StudentViewModel)?.Refresh();
-    }
+    
 }

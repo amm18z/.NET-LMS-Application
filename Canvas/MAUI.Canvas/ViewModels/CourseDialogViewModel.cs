@@ -2,6 +2,7 @@
 using Canvas.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace MAUI.Canvas.ViewModels
 
         public string Description   // kind of a place holder because 'Grades' on 'Course' model isn't really intended to be an integer.
         {
-            get { return course?.Name ?? string.Empty; }
+            get { return course?.Description ?? string.Empty; }
             set
             {
                 if (course == null) course = new Course();
@@ -43,17 +44,28 @@ namespace MAUI.Canvas.ViewModels
             }
         }
 
-        public CourseDialogViewModel()
+        public CourseDialogViewModel(int cId)
         {
-            course = new Course();
+            if(cId == 0)
+            {
+                course = new Course();
+                course.Roster = new List<Person>(); // should this be here or somewhere else?
+                course.Assignments = new List<Assignment>();
+                course.Modules = new List<Module>();
+            }
+            else
+            {
+                course = CourseService.Current.Get(cId) ?? new Course();
+            }
         }
 
         public void AddCourse()
         {
             if (course != null)
             {
-                CourseService.Current.Add(course);
+                CourseService.Current.AddOrUpdate(course);
             }
         }
+
     }
 }

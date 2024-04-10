@@ -10,10 +10,10 @@ namespace Canvas.Services
         {
             courses = new List<Course>
             {
-                new Course() {Code = "RED1101", Name = "Intro to RED", Description = "The fundamental concepts neccesary to gaining a solid foundation in RED."},
-                new Course() {Code = "BLU1101", Name = "Intro to BLUE", Description = "The fundamental concepts neccesary to gaining a solid foundation in BLUE."},
-                new Course() {Code = "YLW1101", Name = "Intro to YELLOW", Description = "The fundamental concepts neccesary to gaining a solid foundation in YELLOW."},
-                new Course() {Code = "GRN1101", Name = "Intro to GREEN", Description = "The fundamental concepts neccesary to gaining a solid foundation in GREEN."},
+                new Course() {Code = "RED 1101", Name = "Intro to Red", Description = "The fundamental concepts neccesary to gaining a solid foundation in RED.", Id=1, Roster = new List<Person>(), Modules = new List<Module>(), Assignments = new List<Assignment>()},
+                new Course() {Code = "BLU 1101", Name = "Intro to Blue", Description = "The fundamental concepts neccesary to gaining a solid foundation in BLUE.", Id=2, Roster = new List<Person>(), Modules = new List<Module>(), Assignments = new List<Assignment>()},
+                new Course() {Code = "YLW 1101", Name = "Intro to Yellow", Description = "The fundamental concepts neccesary to gaining a solid foundation in YELLOW.", Id=3, Roster = new List < Person >(), Modules = new List<Module>(), Assignments = new List<Assignment>()},
+                new Course() {Code = "GRN 1101", Name = "Intro to Green", Description = "The fundamental concepts neccesary to gaining a solid foundation in GREEN.", Id=4, Roster = new List<Person>(), Modules = new List<Module>(), Assignments = new List<Assignment>()},
             };
         }
 
@@ -44,8 +44,8 @@ namespace Canvas.Services
         {
             get
             {
-                return courses.Where( p => p.Name.ToUpper().Contains(queryString ?? string.Empty)
-                                        || p.Description.ToUpper().Contains(queryString ?? string.Empty));
+                return courses.Where( p => p.Name.ToUpper().Contains(queryString?.ToUpper() ?? string.Empty)
+                                        || p.Description.ToUpper().Contains(queryString?.ToUpper() ?? string.Empty));
                         
             }
 
@@ -62,9 +62,33 @@ namespace Canvas.Services
         }
 
 
-        public void Add(Course myCourse) 
-        {                                                  
-            courses.Add(myCourse);
+        public void AddOrUpdate(Course myCourse) 
+        {
+            if (myCourse.Id <= 0)
+            {
+                myCourse.Id = LastId + 1;
+                courses.Add(myCourse);
+            }
+            // auto update
+        }
+
+        public Course? Get(int id)          // for converting an ID to a reference
+        {
+            return courses.FirstOrDefault(c => c.Id == id);  // have to use FirstOrDefault() instead of Where(), because Where() has no idea ID supposed to be unique
+        }
+
+        private int LastId
+        {
+            get
+            {
+                return courses.Select(c => c.Id).Max();  // Select() takes a property of a list, and makes a new list of that property, bascially a SQL select
+                                                        // Max() is getting the highest ID from that list.
+            }
+        }
+
+        public void AddStudentToCourse(Course myCourse, Person myPerson)
+        {
+            myCourse.Roster.Add(myPerson);
         }
 
         public void RemoveCourse(Course myCourse)
@@ -76,6 +100,8 @@ namespace Canvas.Services
         {                                                  
             myCourse.Roster.Remove(myPerson);
         }
+
+        
     }
 }
 

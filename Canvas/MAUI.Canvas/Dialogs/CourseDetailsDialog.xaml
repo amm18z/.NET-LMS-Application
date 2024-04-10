@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MAUI.Canvas.Dialogs.CourseDialog"
-             Title="CourseDialog"
+             x:Class="MAUI.Canvas.Dialogs.CourseDetailsDialog"
+             Title="Course Details"
              NavigatedTo="ContentPage_NavigatedTo">
     <VerticalStackLayout Margin="20" Spacing="10">
-        <Label 
-            Text="New Course"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+   
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -21,14 +18,30 @@
             </Grid.ColumnDefinitions>
 
             <Label Text="Code" Grid.Column="0" Grid.Row="0"/>
-            <Entry Text="{Binding Code}" Grid.Column="1" Grid.Row="0"/>
+            <Label Text="{Binding Code}" Grid.Column="1" Grid.Row="0"/>
             <Label Text="Name" Grid.Column="0" Grid.Row="1"/>
-            <Entry Text="{Binding Name}" Grid.Column="1" Grid.Row="1"/>
+            <Label Text="{Binding Name}" Grid.Column="1" Grid.Row="1"/>
             <Label Text="Description" Grid.Column="0" Grid.Row="2"/>
-            <Entry Text="{Binding Description}" Grid.Column="1" Grid.Row="2"/>
+            <Label Text="{Binding Description}" Grid.Column="1" Grid.Row="2"/>
         </Grid>
-        <Button Text="Ok" Clicked="OkClicked"/>
-        <Button Text="Cancel" Clicked="CancelClicked"/>
 
+        <Label Text=""/>
+
+        <Label Text="Modules"/>
+        <ListView
+            ItemsSource="{Binding Modules}"
+            SelectedItem="{Binding SelectedModule}">
+        </ListView>
+
+        <Label Text=""/>
+        
+        <Label Text="Assignments"/>
+        <ListView
+            ItemsSource="{Binding Assignments}"
+            SelectedItem="{Binding SelectedAssignments}">   
+        </ListView>
+
+
+        <Button Text="Back" Clicked="CancelClicked"/>
     </VerticalStackLayout>
 </ContentPage>

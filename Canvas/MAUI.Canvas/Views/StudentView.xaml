@@ -4,17 +4,41 @@
              x:Class="MAUI.Canvas.Views.StudentView"
              Title="Student View"
              NavigatedTo="ContentPage_NavigatedTo">
-    <VerticalStackLayout>
-        <Label 
-            Text="COURSES!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout Margin="20" Spacing="10">
+
+        <Label Text="Please select yourself from the list of students:"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Entry Text="{Binding StudentsQuery}" Grid.Column="0"/>
+            <Button Text="Search" Clicked="SearchStudentsClicked" Grid.Column="1"/>
+        </Grid>
+        <ListView
+            ItemsSource="{Binding Students}"
+            SelectedItem="{Binding SelectedStudent}">
+        </ListView>
+        <Button Text="Login" Clicked="LoginClicked"/>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Text="Currently logged in as:" Grid.Column="0"/>
+            <Label Text="{Binding currentUserName}" Grid.Column="1"/>
+        </Grid>
+
+        <Label Text=""/>
+
+        <Label Text="Your Courses"/>
         <ListView
             ItemsSource="{Binding Courses}"
             SelectedItem="{Binding SelectedCourse}">
         </ListView>
-        <Button Text="Add Course" Clicked="AddClicked"/>
-        <Button Text="Remove Course" Clicked="RemoveClicked"/>
+        <Button Text="Submit Assignment" Clicked="SubmitClicked"/>
+        <Button Text="View Course Details" Clicked="CourseDetailsClicked"/>
         <Button Text="Back" Clicked="BackClicked"/>
     </VerticalStackLayout>
 </ContentPage>
