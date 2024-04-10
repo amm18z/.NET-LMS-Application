@@ -34,5 +34,32 @@ public partial class CourseDialog : ContentPage
                                                         // otherwise, we'll get what we previously typed into the boxes every time
     }
 
-    
+    private void AddModuleClicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//ModuleDialog?moduleId=0");
+
+    }
+
+    private void UpdateModuleClicked(object sender, EventArgs e)
+    {
+        var myModuleId = (BindingContext as CourseDialogViewModel)?.SelectedModule?.Id;
+        if (myModuleId != null)
+        {
+            Shell.Current.GoToAsync($"//ModuleDialog?moduleId={myModuleId}");
+        }
+    }
+
+    private void RemoveModuleClicked(object sender, EventArgs e)
+    {
+        (BindingContext as CourseDialogViewModel)?.RemoveModule();
+        (BindingContext as CourseDialogViewModel)?.RefreshModules();
+    }
+
+
+
+    private void RemoveStudentClicked(object sender, EventArgs e)
+    {
+        (BindingContext as CourseDialogViewModel)?.RemoveStudent();
+        (BindingContext as CourseDialogViewModel)?.RefreshStudents();
+    }
 }

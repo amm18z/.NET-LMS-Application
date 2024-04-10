@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI.Canvas.Dialogs.ModuleDialog"
+             Title="ModuleDialog"
+             NavigatedTo="ContentPage_NavigatedTo">
+
+    <VerticalStackLayout Margin="20" Spacing="10">
+        <Label 
+            Text="New Module"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Name" Grid.Column="0" Grid.Row="0"/>
+            <Entry Text="{Binding Name}" Grid.Column="1" Grid.Row="0"/>
+            <Label Text="Description" Grid.Column="0" Grid.Row="1"/>
+            <Entry Text="{Binding Description}" Grid.Column="1" Grid.Row="1"/>
+        </Grid>
+        <Button Text="Ok" Clicked="OkClicked"/>
+        <Button Text="Cancel" Clicked="CancelClicked"/>
+    </VerticalStackLayout>
+</ContentPage>

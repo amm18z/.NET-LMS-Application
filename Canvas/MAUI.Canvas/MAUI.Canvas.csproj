@@ -88,6 +88,9 @@
 	  <MauiXaml Update="Dialogs\CourseDetailsDialog.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Dialogs\ModuleDialog.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Dialogs\PersonDialog.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

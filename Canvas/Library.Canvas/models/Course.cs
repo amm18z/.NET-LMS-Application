@@ -16,7 +16,7 @@ namespace Canvas.Models
 
         public List<Assignment>? Assignments{get; set;}
 
-        public List<Module>? Modules{get; set;}
+        //public List<int>? Modules{get; set;}    // if Module has CourseId on it, why is this even needed?
         public Course() // default constructor, replaces automatic constructor
         {
             // Id = Guid.NewGuid();

@@ -33,5 +33,9 @@
         Title="Course Details Dialog"
         ContentTemplate="{DataTemplate dialogs:CourseDetailsDialog}"
         Route="CourseDetails" />
+    <ShellContent
+        Title="Module Dialog"
+        ContentTemplate="{DataTemplate dialogs:ModuleDialog}"
+        Route="ModuleDialog" />
 
 </Shell>

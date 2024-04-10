@@ -10,10 +10,10 @@ namespace Canvas.Services
         {
             courses = new List<Course>
             {
-                new Course() {Code = "RED 1101", Name = "Intro to Red", Description = "The fundamental concepts neccesary to gaining a solid foundation in RED.", Id=1, Roster = new List<Person>(), Modules = new List<Module>(), Assignments = new List<Assignment>()},
-                new Course() {Code = "BLU 1101", Name = "Intro to Blue", Description = "The fundamental concepts neccesary to gaining a solid foundation in BLUE.", Id=2, Roster = new List<Person>(), Modules = new List<Module>(), Assignments = new List<Assignment>()},
-                new Course() {Code = "YLW 1101", Name = "Intro to Yellow", Description = "The fundamental concepts neccesary to gaining a solid foundation in YELLOW.", Id=3, Roster = new List < Person >(), Modules = new List<Module>(), Assignments = new List<Assignment>()},
-                new Course() {Code = "GRN 1101", Name = "Intro to Green", Description = "The fundamental concepts neccesary to gaining a solid foundation in GREEN.", Id=4, Roster = new List<Person>(), Modules = new List<Module>(), Assignments = new List<Assignment>()},
+                new Course() {Code = "RED 1101", Name = "Intro to Red", Description = "The fundamental concepts neccesary to gaining a solid foundation in RED.", Id=1, Roster = new List<Person>(), Assignments = new List<Assignment>()},
+                new Course() {Code = "BLU 1101", Name = "Intro to Blue", Description = "The fundamental concepts neccesary to gaining a solid foundation in BLUE.", Id=2, Roster = new List<Person>(), Assignments = new List<Assignment>()},
+                new Course() {Code = "YLW 1101", Name = "Intro to Yellow", Description = "The fundamental concepts neccesary to gaining a solid foundation in YELLOW.", Id=3, Roster = new List < Person >(), Assignments = new List<Assignment>()},
+                new Course() {Code = "GRN 1101", Name = "Intro to Green", Description = "The fundamental concepts neccesary to gaining a solid foundation in GREEN.", Id=4, Roster = new List<Person>(), Assignments = new List<Assignment>()},
             };
         }
 

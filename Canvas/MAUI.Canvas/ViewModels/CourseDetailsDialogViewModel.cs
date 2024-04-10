@@ -12,12 +12,15 @@ namespace MAUI.Canvas.ViewModels
     class CourseDetailsDialogViewModel
     {
         private Course? course;  // pass through properties
+        private ModuleService moduleSvc;
 
         public Person SelectedStudent { get; set; }
 
 
         public CourseDetailsDialogViewModel(int cId)
         {
+            moduleSvc = ModuleService.Current;
+
             if (cId == 0)
             {
                 course = new Course();
@@ -47,7 +50,7 @@ namespace MAUI.Canvas.ViewModels
         {
             get
             {
-                return new ObservableCollection<Module>(course.Modules); 
+                return new ObservableCollection<Module>(moduleSvc.Modules.Where(m => m.CourseId == course?.Id));
             }
         }
 

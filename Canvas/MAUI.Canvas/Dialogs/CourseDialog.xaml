@@ -4,31 +4,54 @@
              x:Class="MAUI.Canvas.Dialogs.CourseDialog"
              Title="CourseDialog"
              NavigatedTo="ContentPage_NavigatedTo">
-    <VerticalStackLayout Margin="20" Spacing="10">
-        <Label 
+    <ScrollView VerticalScrollBarVisibility="Always">
+        <VerticalStackLayout Margin="20" Spacing="10">
+            <Label 
             Text="New Course"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="5*"/>
-            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
 
-            <Label Text="Code" Grid.Column="0" Grid.Row="0"/>
-            <Entry Text="{Binding Code}" Grid.Column="1" Grid.Row="0"/>
-            <Label Text="Name" Grid.Column="0" Grid.Row="1"/>
-            <Entry Text="{Binding Name}" Grid.Column="1" Grid.Row="1"/>
-            <Label Text="Description" Grid.Column="0" Grid.Row="2"/>
-            <Entry Text="{Binding Description}" Grid.Column="1" Grid.Row="2"/>
-        </Grid>
-        <Button Text="Ok" Clicked="OkClicked"/>
-        <Button Text="Cancel" Clicked="CancelClicked"/>
+                <Label Text="Code" Grid.Column="0" Grid.Row="0"/>
+                <Entry Text="{Binding Code}" Grid.Column="1" Grid.Row="0"/>
+                <Label Text="Name" Grid.Column="0" Grid.Row="1"/>
+                <Entry Text="{Binding Name}" Grid.Column="1" Grid.Row="1"/>
+                <Label Text="Description" Grid.Column="0" Grid.Row="2"/>
+                <Entry Text="{Binding Description}" Grid.Column="1" Grid.Row="2"/>
+            </Grid>
+            <Button Text="Ok" Clicked="OkClicked"/>
+            <Button Text="Cancel" Clicked="CancelClicked"/>
 
-    </VerticalStackLayout>
+            <Label Text=""/>
+
+            <Label Text="Modules"/>
+            <ListView
+            ItemsSource="{Binding Modules}"
+            SelectedItem="{Binding SelectedModule}">
+            </ListView>
+
+            <Button Text="Add Module" Clicked="AddModuleClicked"/>
+            <Button Text="Update/View Details of Module" Clicked="UpdateModuleClicked"/>
+            <Button Text="Remove Module" Clicked="RemoveModuleClicked"/>
+
+            <Label Text=""/>
+
+            <Label Text="Students"/>
+            <ListView
+            ItemsSource="{Binding Students}"
+            SelectedItem="{Binding SelectedStudent}">
+            </ListView>
+            <Button Text="Remove Student" Clicked="RemoveStudentClicked"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
