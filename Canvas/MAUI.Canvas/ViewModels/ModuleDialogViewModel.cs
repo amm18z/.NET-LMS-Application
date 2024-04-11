@@ -43,18 +43,25 @@ namespace MAUI.Canvas.ViewModels
             }
         }
 
-        public ModuleDialogViewModel(int cId)
+        public int CourseId
         {
-            if (cId == 0)
-            {
-                module = new Module();
-                module.Content = new List<ContentItem>();
-            }
-            else
-            {
-                module = ModuleService.Current.Get(cId) ?? new Module();
-            }
+            get { return module?.CourseId ?? 0; }
         }
+
+        public ModuleDialogViewModel(int mId, int cId)  // Creating a new module    (mId is needed to differentiate constructors)
+        {
+            module = new Module();
+            module.Content = new List<ContentItem>();
+
+            module.CourseId = cId;
+        }
+
+        public ModuleDialogViewModel(int mId)   // Updating a module
+        {
+            module = ModuleService.Current.Get(mId) ?? new Module();
+        }
+
+        
 
         public void AddModule()
         {

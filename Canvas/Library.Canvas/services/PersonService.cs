@@ -109,8 +109,8 @@ namespace Canvas.Services
         {
             get
             {
-                return people.Select(p => p.Id).Max();  // Select() takes a property of a list, and makes a new list of that property, bascially a SQL select
-                                                        // Max() is getting the highest ID from that list.
+                return people.Select(c => c?.Id).Max() ?? 0;  // Select() takes a property of a list, and makes a new list of that property, bascially a SQL select
+                                                               // Max() is getting the highest ID from that list.
             }
         }
     }   

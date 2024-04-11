@@ -3,11 +3,11 @@ using MAUI.Canvas.ViewModels;
 
 namespace MAUI.Canvas.Dialogs;
 
-[QueryProperty(nameof(ModuleId), "moduleId")]
+[QueryProperty(nameof(AssignmentId), "moduleId")]
 [QueryProperty(nameof(CourseId), "courseId")]
-public partial class ModuleDialog : ContentPage
+public partial class AssignmentDialog : ContentPage
 {
-    public int ModuleId
+    public int AssignmentId
     {
         get; set;
     }
@@ -17,36 +17,36 @@ public partial class ModuleDialog : ContentPage
         get; set;
     }
 
-    public ModuleDialog()
+    public AssignmentDialog()
     {
         InitializeComponent();
-        BindingContext = new ModuleDialogViewModel(0);
+        BindingContext = new AssignmentDialogViewModel(0);
     }
 
     private void CancelClicked(object sender, EventArgs e)
     {
-        var myCourseId = (BindingContext as ModuleDialogViewModel)?.CourseId;
+        var myCourseId = (BindingContext as AssignmentDialogViewModel)?.CourseId;
         Shell.Current.GoToAsync($"//CourseDialog?courseId={myCourseId}");
     }
 
     private void OkClicked(object sender, EventArgs e)
     {
-        var myCourseId = (BindingContext as ModuleDialogViewModel)?.CourseId;
-        (BindingContext as ModuleDialogViewModel)?.AddModule();
+        var myCourseId = (BindingContext as AssignmentDialogViewModel)?.CourseId;
+        (BindingContext as AssignmentDialogViewModel)?.AddAssignment();
         Shell.Current.GoToAsync($"//CourseDialog?courseId={myCourseId}");
     }
 
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
-        if(CourseId == 0)   // Creating a new module
+        if (CourseId == 0)   // Creating a new module
         {
-            BindingContext = new ModuleDialogViewModel(ModuleId);
+            BindingContext = new AssignmentDialogViewModel(AssignmentId);
         }
         else    // Updating a module
         {
-            BindingContext = new ModuleDialogViewModel(ModuleId, CourseId);
+            BindingContext = new AssignmentDialogViewModel(AssignmentId, CourseId);
         }
-       
+
     }
 
 }

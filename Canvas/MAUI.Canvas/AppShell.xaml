@@ -37,5 +37,10 @@
         Title="Module Dialog"
         ContentTemplate="{DataTemplate dialogs:ModuleDialog}"
         Route="ModuleDialog" />
+    <ShellContent
+        Title="Assignment Dialog"
+        ContentTemplate="{DataTemplate dialogs:AssignmentDialog}"
+        Route="AssignmentDialog"
+        />
 
 </Shell>

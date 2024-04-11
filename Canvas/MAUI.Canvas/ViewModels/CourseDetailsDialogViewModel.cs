@@ -13,6 +13,7 @@ namespace MAUI.Canvas.ViewModels
     {
         private Course? course;  // pass through properties
         private ModuleService moduleSvc;
+        private AssignmentService assignmentSvc;
 
         public Person SelectedStudent { get; set; }
 
@@ -20,6 +21,7 @@ namespace MAUI.Canvas.ViewModels
         public CourseDetailsDialogViewModel(int cId)
         {
             moduleSvc = ModuleService.Current;
+            assignmentSvc = AssignmentService.Current;
 
             if (cId == 0)
             {
@@ -58,7 +60,7 @@ namespace MAUI.Canvas.ViewModels
         {
             get
             {
-                return new ObservableCollection<Assignment>(course.Assignments);
+                return new ObservableCollection<Assignment>(assignmentSvc.Assignments.Where(a => a.CourseId == course?.Id));
             }
         }
 

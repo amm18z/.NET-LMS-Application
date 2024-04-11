@@ -36,13 +36,15 @@ public partial class CourseDialog : ContentPage
 
     private void AddModuleClicked(object sender, EventArgs e)
     {
-        Shell.Current.GoToAsync("//ModuleDialog?moduleId=0");
+        var myCourseId = (BindingContext as CourseDialogViewModel)?.Id;
+        Shell.Current.GoToAsync($"//ModuleDialog?moduleId=0&courseId={myCourseId}");
 
     }
 
     private void UpdateModuleClicked(object sender, EventArgs e)
     {
         var myModuleId = (BindingContext as CourseDialogViewModel)?.SelectedModule?.Id;
+        
         if (myModuleId != null)
         {
             Shell.Current.GoToAsync($"//ModuleDialog?moduleId={myModuleId}");
@@ -54,6 +56,35 @@ public partial class CourseDialog : ContentPage
         (BindingContext as CourseDialogViewModel)?.RemoveModule();
         (BindingContext as CourseDialogViewModel)?.RefreshModules();
     }
+
+
+
+
+
+    private void AddAssignmentClicked(object sender, EventArgs e)
+    {
+        var myCourseId = (BindingContext as CourseDialogViewModel)?.Id;
+        Shell.Current.GoToAsync($"//AssignmentDialog?moduleId=0&courseId={myCourseId}");
+
+    }
+
+    private void UpdateAssignmentClicked(object sender, EventArgs e)
+    {
+        var myModuleId = (BindingContext as CourseDialogViewModel)?.SelectedAssignment?.Id;
+
+        if (myModuleId != null)
+        {
+            Shell.Current.GoToAsync($"//AssignmentDialog?moduleId={myModuleId}");
+        }
+    }
+
+    private void RemoveAssignmentClicked(object sender, EventArgs e)
+    {
+        (BindingContext as CourseDialogViewModel)?.RemoveAssignment();
+        (BindingContext as CourseDialogViewModel)?.RefreshAssignments();
+    }
+
+
 
 
 

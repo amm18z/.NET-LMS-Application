@@ -106,7 +106,7 @@ namespace MAUI.Canvas.ViewModels
         {
             if(SelectedPerson != null)
             {
-                SelectedCourse?.Roster?.Add(SelectedPerson);
+                SelectedCourse?.Roster?.Add(SelectedPerson.Id);
             }
             
         }

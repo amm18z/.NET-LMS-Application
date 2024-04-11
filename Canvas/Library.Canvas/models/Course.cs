@@ -12,9 +12,9 @@ namespace Canvas.Models
 
         public string? Description{get; set;}
 
-        public List<Person>? Roster{get; set;}
+        public List<int> Roster{get; set;}
 
-        public List<Assignment>? Assignments{get; set;}
+        // public List<int>? Assignments{get; set;}
 
         //public List<int>? Modules{get; set;}    // if Module has CourseId on it, why is this even needed?
         public Course() // default constructor, replaces automatic constructor

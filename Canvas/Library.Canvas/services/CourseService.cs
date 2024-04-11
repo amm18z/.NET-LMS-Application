@@ -10,10 +10,10 @@ namespace Canvas.Services
         {
             courses = new List<Course>
             {
-                new Course() {Code = "RED 1101", Name = "Intro to Red", Description = "The fundamental concepts neccesary to gaining a solid foundation in RED.", Id=1, Roster = new List<Person>(), Assignments = new List<Assignment>()},
-                new Course() {Code = "BLU 1101", Name = "Intro to Blue", Description = "The fundamental concepts neccesary to gaining a solid foundation in BLUE.", Id=2, Roster = new List<Person>(), Assignments = new List<Assignment>()},
-                new Course() {Code = "YLW 1101", Name = "Intro to Yellow", Description = "The fundamental concepts neccesary to gaining a solid foundation in YELLOW.", Id=3, Roster = new List < Person >(), Assignments = new List<Assignment>()},
-                new Course() {Code = "GRN 1101", Name = "Intro to Green", Description = "The fundamental concepts neccesary to gaining a solid foundation in GREEN.", Id=4, Roster = new List<Person>(), Assignments = new List<Assignment>()},
+                new Course() {Code = "RED 1101", Name = "Intro to Red", Description = "The fundamental concepts neccesary to gaining a solid foundation in RED.", Id=1, Roster = new List<int>()},
+                new Course() {Code = "BLU 1101", Name = "Intro to Blue", Description = "The fundamental concepts neccesary to gaining a solid foundation in BLUE.", Id=2, Roster = new List<int>()},
+                new Course() {Code = "YLW 1101", Name = "Intro to Yellow", Description = "The fundamental concepts neccesary to gaining a solid foundation in YELLOW.", Id=3, Roster = new List < int >()},
+                new Course() {Code = "GRN 1101", Name = "Intro to Green", Description = "The fundamental concepts neccesary to gaining a solid foundation in GREEN.", Id=4, Roster = new List<int>()},
             };
         }
 
@@ -81,14 +81,14 @@ namespace Canvas.Services
         {
             get
             {
-                return courses.Select(c => c.Id).Max();  // Select() takes a property of a list, and makes a new list of that property, bascially a SQL select
+                return courses.Select(c => c?.Id).Max() ?? 0;  // Select() takes a property of a list, and makes a new list of that property, bascially a SQL select
                                                         // Max() is getting the highest ID from that list.
             }
         }
 
         public void AddStudentToCourse(Course myCourse, Person myPerson)
         {
-            myCourse.Roster.Add(myPerson);
+            myCourse.Roster.Add(myPerson.Id);
         }
 
         public void RemoveCourse(Course myCourse)
@@ -98,7 +98,7 @@ namespace Canvas.Services
 
         public void RemoveStudent(Course myCourse, Person myPerson) //removes specified student from specified course
         {                                                  
-            myCourse.Roster.Remove(myPerson);
+            myCourse.Roster.Remove(myPerson.Id);
         }
 
         

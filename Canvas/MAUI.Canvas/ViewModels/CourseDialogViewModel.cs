@@ -22,6 +22,8 @@ namespace MAUI.Canvas.ViewModels
 
         private Course? course;  // pass through properties
         private ModuleService moduleSvc;
+        private AssignmentService assignmentSvc;
+        private PersonService personSvc;
 
         //private string classification;
         public string Code
@@ -54,15 +56,22 @@ namespace MAUI.Canvas.ViewModels
             }
         }
 
+        public int Id
+        {
+            get { return course?.Id ?? 0; }
+        }
+
         public CourseDialogViewModel(int cId)
         {
             moduleSvc = ModuleService.Current;
+            assignmentSvc = AssignmentService.Current;
+            personSvc = PersonService.Current;
 
             if (cId == 0)
             {
                 course = new Course();
-                course.Roster = new List<Person>(); // should this be here or somewhere else?
-                course.Assignments = new List<Assignment>();
+                course.Roster = new List<int>(); // should this be here or somewhere else?
+                //course.Assignments = new List<int>();
                 //course.Modules = new List<int>();
             }
             else
@@ -107,11 +116,33 @@ namespace MAUI.Canvas.ViewModels
 
 
 
+        public ObservableCollection<Assignment> Assignments
+        {
+            get
+            {
+                return new ObservableCollection<Assignment>(assignmentSvc.Assignments.Where(a => a.CourseId == course?.Id));
+            }
+        }
+
+        public Assignment SelectedAssignment { get; set; }
+
+        public void RemoveAssignment()
+        {
+            assignmentSvc.Remove(SelectedAssignment);
+        }
+
+        public void RefreshAssignments()
+        {
+            NotifyPropertyChanged(nameof(Assignments));
+        }
+
+
+
         public ObservableCollection<Person> Students
         {
             get
             {
-                return new ObservableCollection<Person>(course.Roster);
+                return new ObservableCollection<Person>(personSvc.People.Where(p => course.Roster.Contains(p.Id)));
             }
         }
 
@@ -119,7 +150,7 @@ namespace MAUI.Canvas.ViewModels
 
         public void RemoveStudent()
         {
-            course.Roster.Remove(SelectedStudent);
+            course.Roster.Remove(SelectedStudent.Id);
         }
 
         public void RefreshStudents()
@@ -127,5 +158,11 @@ namespace MAUI.Canvas.ViewModels
             NotifyPropertyChanged(nameof(Students));
         }
 
+
+
+
+        
+
+       
     }
 }

@@ -20,6 +20,7 @@ namespace MAUI.Canvas.ViewModels
         {
             courseSvc = CourseService.Current;
             personSvc = PersonService.Current;
+            currentUser = new Person();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -67,7 +68,7 @@ namespace MAUI.Canvas.ViewModels
         {
             get
             {
-                return new ObservableCollection<Course>(courseSvc.Courses.Where(c => c.Roster.Contains(currentUser))); //observable collection gives us updates for adds and removes for free (implements ICollection btw)
+                return new ObservableCollection<Course>(courseSvc.Courses.Where(c => c.Roster.Contains(currentUser.Id) )) ; //observable collection gives us updates for adds and removes for free (implements ICollection btw)
             }
         }
 

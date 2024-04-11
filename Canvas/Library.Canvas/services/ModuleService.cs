@@ -42,8 +42,8 @@ namespace Canvas.Services
         {
             get
             {
-                return modules.Where(p => p.Name.ToUpper().Contains(queryString?.ToUpper() ?? string.Empty)
-                                        || p.Description.ToUpper().Contains(queryString?.ToUpper() ?? string.Empty));
+                return modules.Where(a => a.Name.ToUpper().Contains(queryString?.ToUpper() ?? string.Empty)
+                                        || a.Description.ToUpper().Contains(queryString?.ToUpper() ?? string.Empty));
 
             }
 
@@ -79,7 +79,7 @@ namespace Canvas.Services
         {
             get
             {
-                return modules.Select(c => c.Id).Max();  // Select() takes a property of a list, and makes a new list of that property, bascially a SQL select
+                return modules.Select(c => c?.Id)?.Max() ?? 0;  // Select() takes a property of a list, and makes a new list of that property, bascially a SQL select
                                                          // Max() is getting the highest ID from that list.
             }
         }

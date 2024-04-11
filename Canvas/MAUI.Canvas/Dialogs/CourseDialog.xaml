@@ -45,6 +45,18 @@
 
             <Label Text=""/>
 
+            <Label Text="Assignments"/>
+            <ListView
+                ItemsSource="{Binding Assignments}"
+                SelectedItem="{Binding SelectedAssignment}">
+            </ListView>
+
+            <Button Text="Add Assignment" Clicked="AddAssignmentClicked"/>
+            <Button Text="Update/View Details of Assignment" Clicked="UpdateAssignmentClicked"/>
+            <Button Text="Remove Assignment" Clicked="RemoveAssignmentClicked"/>
+
+            <Label Text=""/>
+            
             <Label Text="Students"/>
             <ListView
             ItemsSource="{Binding Students}"
