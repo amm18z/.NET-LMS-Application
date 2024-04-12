@@ -150,7 +150,11 @@ namespace MAUI.Canvas.ViewModels
 
         public void RemoveStudent()
         {
-            course.Roster.Remove(SelectedStudent.Id);
+            if (SelectedStudent != null)
+            {
+                course.Roster.Remove(SelectedStudent.Id);
+            }
+            
         }
 
         public void RefreshStudents()

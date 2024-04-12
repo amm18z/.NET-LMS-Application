@@ -38,13 +38,13 @@ public partial class ModuleDialog : ContentPage
 
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
-        if(CourseId == 0)   // Creating a new module
+        if(ModuleId == 0)   // Creating a new module
         {
-            BindingContext = new ModuleDialogViewModel(ModuleId);
+            BindingContext = new ModuleDialogViewModel(CourseId); // moduleService will generate a ModuleID, only CourseID is neccesary because the module must know which course it's attached to
         }
         else    // Updating a module
         {
-            BindingContext = new ModuleDialogViewModel(ModuleId, CourseId);
+            BindingContext = new ModuleDialogViewModel(CourseId, ModuleId); // only the moduleID is neccesary. Since the module has already been created, it knows what course it has been attached to
         }
        
     }

@@ -22,19 +22,14 @@ public partial class StudentView : ContentPage
         (BindingContext as StudentViewModel)?.RefreshCourses();
     }
 
-    private void SubmitClicked(object sender, EventArgs e) 
-    {
-        
-        //Shell.Current.GoToAsync("//CourseDetail");
-    }
-
     private void CourseDetailsClicked(object sender, EventArgs e)
     {
         var myCourseId = (BindingContext as StudentViewModel)?.SelectedCourse?.Id;
+        var myStudentId = (BindingContext as StudentViewModel)?.currentUser?.Id;
 
-        if (myCourseId != null)
+        if (myCourseId != null & myStudentId != null)
         {
-            Shell.Current.GoToAsync($"//CourseDetails?courseId={myCourseId}");
+            Shell.Current.GoToAsync($"//CourseDetailsDialog?courseId={myCourseId}&studentId={myStudentId}");
         }
     }
 

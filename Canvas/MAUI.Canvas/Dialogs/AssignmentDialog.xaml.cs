@@ -38,13 +38,13 @@ public partial class AssignmentDialog : ContentPage
 
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
-        if (CourseId == 0)   // Creating a new module
+        if (AssignmentId == 0)   // Creating a new module
         {
-            BindingContext = new AssignmentDialogViewModel(AssignmentId);
+            BindingContext = new AssignmentDialogViewModel(CourseId);   // only courseID is needed here
         }
         else    // Updating a module
         {
-            BindingContext = new AssignmentDialogViewModel(AssignmentId, CourseId);
+            BindingContext = new AssignmentDialogViewModel(CourseId, AssignmentId); // only assignmentID is needed here
         }
 
     }

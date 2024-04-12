@@ -32,7 +32,7 @@
     <ShellContent
         Title="Course Details Dialog"
         ContentTemplate="{DataTemplate dialogs:CourseDetailsDialog}"
-        Route="CourseDetails" />
+        Route="CourseDetailsDialog" />
     <ShellContent
         Title="Module Dialog"
         ContentTemplate="{DataTemplate dialogs:ModuleDialog}"
@@ -40,7 +40,14 @@
     <ShellContent
         Title="Assignment Dialog"
         ContentTemplate="{DataTemplate dialogs:AssignmentDialog}"
-        Route="AssignmentDialog"
-        />
+        Route="AssignmentDialog" />
+    <ShellContent
+        Title="Assignment Details Details"
+        ContentTemplate="{DataTemplate dialogs:AssignmentDetailsDialog}"
+        Route="AssignmentDetailsDialog" />
+    <ShellContent
+        Title="Submission Dialog"
+        ContentTemplate="{DataTemplate dialogs:SubmissionDialog}"
+        Route="SubmissionDialog" />
 
 </Shell>

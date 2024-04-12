@@ -25,9 +25,9 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="8*"/>
                 </Grid.ColumnDefinitions>
-                <Label Text="Currently logged in as:" Grid.Column="0"/>
+                <Label Text="Currently logged in as: " Grid.Column="0"/>
                 <Label Text="{Binding currentUserName}" Grid.Column="1"/>
             </Grid>
 
@@ -38,7 +38,6 @@
                 ItemsSource="{Binding Courses}"
                 SelectedItem="{Binding SelectedCourse}">
             </ListView>
-            <Button Text="Submit Assignment" Clicked="SubmitClicked"/>
             <Button Text="View Course Details" Clicked="CourseDetailsClicked"/>
             <Button Text="Back" Clicked="BackClicked"/>
         </VerticalStackLayout>

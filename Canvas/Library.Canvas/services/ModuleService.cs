@@ -60,7 +60,7 @@ namespace Canvas.Services
         }
 
 
-        public void AddOrUpdate(Module myModule)
+        public void AddOrUpdate(Module myModule)    // still using reference rather than ID, but will be fixed later
         {
             if (myModule.Id <= 0)
             {
@@ -86,7 +86,7 @@ namespace Canvas.Services
 
         
 
-        public void Remove(Module myModule)
+        public void Remove(Module myModule)     // still using reference rather than ID, but will be fixed later
         {
             modules.Remove(myModule);
         }

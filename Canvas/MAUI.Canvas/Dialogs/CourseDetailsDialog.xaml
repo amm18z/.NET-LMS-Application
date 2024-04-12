@@ -29,8 +29,7 @@
 
         <Label Text="Modules"/>
         <ListView
-            ItemsSource="{Binding Modules}"
-            SelectedItem="{Binding SelectedModule}">
+            ItemsSource="{Binding Modules}">
         </ListView>
 
         <Label Text=""/>
@@ -38,8 +37,9 @@
         <Label Text="Assignments"/>
         <ListView
             ItemsSource="{Binding Assignments}"
-            SelectedItem="{Binding SelectedAssignments}">   
+            SelectedItem="{Binding SelectedAssignment}">   
         </ListView>
+        <Button Text="View Assignment Details" Clicked="ViewAssignmentClicked"/>
 
 
         <Button Text="Back" Clicked="CancelClicked"/>

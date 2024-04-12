@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MAUI.Canvas.Dialogs.AssignmentDialog"
-             Title="AssignmentDialog"
+             x:Class="MAUI.Canvas.Dialogs.AssignmentDetailsDialog"
+             Title="Assignment Details"
              NavigatedTo="ContentPage_NavigatedTo">
-
     <VerticalStackLayout Margin="20" Spacing="10">
-        <Label 
-            Text="New Module"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -23,16 +19,32 @@
             </Grid.ColumnDefinitions>
 
             <Label Text="Name" Grid.Column="0" Grid.Row="0"/>
-            <Entry Text="{Binding Name}" Grid.Column="1" Grid.Row="0"/>
+            <Label Text="{Binding Name}" Grid.Column="1" Grid.Row="0"/>
             <Label Text="Description" Grid.Column="0" Grid.Row="1"/>
-            <Entry Text="{Binding Description}" Grid.Column="1" Grid.Row="1"/>
+            <Label Text="{Binding Description}" Grid.Column="1" Grid.Row="1"/>
             <Label Text="Total Available Points" Grid.Column="0" Grid.Row="2"/>
-            <Entry Text="{Binding TotalAvailablePoints}" Grid.Column="1" Grid.Row="2"/>
+            <Label Text="{Binding TotalAvailalbePoints}" Grid.Column="1" Grid.Row="2"/>
             <Label Text="Due Date" Grid.Column="0" Grid.Row="3"/>
-            <DatePicker Date="{Binding DueDate}" Grid.Column="1" Grid.Row="3" MinimumDate="{Binding MinDate}"/>
-            
+            <Label Text="{Binding DueDate}" Grid.Column="1" Grid.Row="3"/>
+
+
         </Grid>
-        <Button Text="Ok" Clicked="OkClicked"/>
-        <Button Text="Cancel" Clicked="CancelClicked"/>
+
+        <Label Text=""/>
+
+        <Label Text="Your Sumbissions"/>
+        <ListView
+            ItemsSource="{Binding Submissions}"
+            SelectedItem="{Binding SelectedSubmission}">
+        </ListView>
+
+        <Label Text=""/>
+
+        
+        <Button Text="Add Submission" Clicked="AddSubmitClicked"/>
+        <Button Text="Modify Submission" Clicked="ModifySubmitClicked"/>
+
+
+        <Button Text="Back" Clicked="CancelClicked"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -48,15 +48,17 @@ namespace MAUI.Canvas.ViewModels
             get { return module?.CourseId ?? 0; }
         }
 
-        public ModuleDialogViewModel(int mId, int cId)  // Creating a new module    (mId is needed to differentiate constructors)
+        public ModuleDialogViewModel(int cId)  // Creating a new module
         {
             module = new Module();
-            module.Content = new List<ContentItem>();
+            module.Content = new List<ContentItem>();   // not really doing anything with content items, yet?
 
             module.CourseId = cId;
+            module.Name = "";           // if you try to create a new module without this and without typing anything into the entry box, it will give null reference exception
+            module.Description = "";
         }
 
-        public ModuleDialogViewModel(int mId)   // Updating a module
+        public ModuleDialogViewModel(int cId, int mId)   // Updating a module (cId is still needed, so constructors can be disambiguated)
         {
             module = ModuleService.Current.Get(mId) ?? new Module();
         }

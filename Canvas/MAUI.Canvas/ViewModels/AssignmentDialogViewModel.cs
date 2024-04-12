@@ -55,11 +55,19 @@ namespace MAUI.Canvas.ViewModels
 
         public DateTime DueDate
         {
-            get { return assignment?.DueDate ?? DateTime.MinValue; }
+            get { return assignment?.DueDate ?? DateTime.Now; }
             set
             {
                 if (assignment == null) assignment = new Assignment();
                 assignment.DueDate = value;
+            }
+        }
+
+        public DateTime MinDate
+        {
+            get
+            {
+                return DateTime.Now;
             }
         }
 
@@ -68,14 +76,17 @@ namespace MAUI.Canvas.ViewModels
             get { return assignment?.CourseId ?? 0; }
         }
 
-        public AssignmentDialogViewModel(int aId, int cId)  // Creating a new assignment    (mId is needed to differentiate constructors)
+        public AssignmentDialogViewModel(int cId)  // Creating a new assignment    
         {
             assignment = new Assignment();
 
             assignment.CourseId = cId;
+
+            assignment.Name = "";
+            assignment.Description = "";
         }
 
-        public AssignmentDialogViewModel(int aId)   // Updating a assignment
+        public AssignmentDialogViewModel(int cId, int aId)   // Updating a assignment (cId as parameter is still needed, to differentiate constructors)
         {
             assignment = AssignmentService.Current.Get(aId) ?? new Assignment();
         }
