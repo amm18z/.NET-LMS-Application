@@ -24,7 +24,7 @@ public partial class CourseDetailsDialog : ContentPage
 
     private void ViewAssignmentClicked(object sender, EventArgs e)
     {
-        var myAssignmentId = (BindingContext as CourseDetailsDialogViewModel)?.SelectedAssignment.Id;
+        var myAssignmentId = (BindingContext as CourseDetailsDialogViewModel)?.SelectedAssignment?.Id;
         Shell.Current.GoToAsync($"//AssignmentDetailsDialog?assignmentId={myAssignmentId}&studentId={StudentId}&courseId={CourseId}");
     }
 

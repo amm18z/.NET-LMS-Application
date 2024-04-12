@@ -45,7 +45,7 @@ namespace MAUI.Canvas.ViewModels
             get { return assignment?.Description ?? string.Empty; }
         }
 
-        public int TotalPointsAvailable
+        public int TotalAvailablePoints
         {
             get { return assignment?.TotalAvailablePoints ?? 0; }
         }

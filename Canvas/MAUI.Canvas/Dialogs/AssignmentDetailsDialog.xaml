@@ -23,7 +23,7 @@
             <Label Text="Description" Grid.Column="0" Grid.Row="1"/>
             <Label Text="{Binding Description}" Grid.Column="1" Grid.Row="1"/>
             <Label Text="Total Available Points" Grid.Column="0" Grid.Row="2"/>
-            <Label Text="{Binding TotalAvailalbePoints}" Grid.Column="1" Grid.Row="2"/>
+            <Label Text="{Binding TotalAvailablePoints}" Grid.Column="1" Grid.Row="2"/>
             <Label Text="Due Date" Grid.Column="0" Grid.Row="3"/>
             <Label Text="{Binding DueDate}" Grid.Column="1" Grid.Row="3"/>
 
