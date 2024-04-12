@@ -24,17 +24,19 @@ namespace MAUI.Canvas.ViewModels
         private Assignment? assignment;  // pass through properties
         private AssignmentService assignmentSvc;
         private SubmissionService submissionSvc;
-        
 
 
-        public AssignmentDetailsDialogViewModel(int aId)
+        private int studentId;
+        public AssignmentDetailsDialogViewModel(int aId, int stId)
         {
             assignmentSvc = AssignmentService.Current;
             submissionSvc = SubmissionService.Current;
 
             assignment = AssignmentService.Current.Get(aId) ?? new Assignment();
+            studentId = stId;
         }
 
+        
         public string Name
         {
             get { return assignment?.Name ?? string.Empty; }
@@ -61,7 +63,7 @@ namespace MAUI.Canvas.ViewModels
         {
             get
             {
-                return new ObservableCollection<Submission>(submissionSvc.Submissions.Where(s => s.AssignmentId == assignment?.Id));
+                return new ObservableCollection<Submission>(submissionSvc.Submissions.Where(s => s.AssignmentId == assignment?.Id & s.StudentId == studentId));
             }
         }
 

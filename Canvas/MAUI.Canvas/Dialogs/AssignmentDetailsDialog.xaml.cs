@@ -55,7 +55,7 @@ public partial class AssignmentDetailsDialog : ContentPage
 
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
-        BindingContext = new AssignmentDetailsDialogViewModel(AssignmentId);   // explicitly resetting viewmodel every time we navigate to assignmentdialog, gives us a brand new assignment object every time.
+        BindingContext = new AssignmentDetailsDialogViewModel(AssignmentId, StudentId);   // explicitly resetting viewmodel every time we navigate to assignmentdialog, gives us a brand new assignment object every time.
                                                                                // otherwise, we'll get what we previously typed into the boxes every time
         (BindingContext as AssignmentDetailsDialogViewModel)?.RefreshSubmissions();
     }

@@ -16,7 +16,8 @@
                 <Entry Text="{Binding CoursesQuery}" Grid.Column="0"/>
                 <Button Text="Search" Clicked="SearchCoursesClicked" Grid.Column="1"/>
             </Grid>
-
+            
+            
             <ListView
                 ItemsSource="{Binding Courses}"
                 SelectedItem="{Binding SelectedCourse}">
@@ -52,7 +53,7 @@
             <Label Text=""/>
             <Button Text="Add Selected Student to Selected Course" Clicked="AddStudentToCourseClicked"/>
             <Button Text="Back" Clicked="BackClicked"/>
-
+            
         </VerticalStackLayout>
     </ScrollView>
     

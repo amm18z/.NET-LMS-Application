@@ -26,14 +26,14 @@ public partial class ModuleDialog : ContentPage
     private void CancelClicked(object sender, EventArgs e)
     {
         var myCourseId = (BindingContext as ModuleDialogViewModel)?.CourseId;
-        Shell.Current.GoToAsync($"//CourseDialog?courseId={myCourseId}");
+        Shell.Current.GoToAsync($"//CourseDialog?courseId={myCourseId}&visibilityFlag={true}");
     }
 
     private void OkClicked(object sender, EventArgs e)
     {
         var myCourseId = (BindingContext as ModuleDialogViewModel)?.CourseId;
         (BindingContext as ModuleDialogViewModel)?.AddModule();
-        Shell.Current.GoToAsync($"//CourseDialog?courseId={myCourseId}");
+        Shell.Current.GoToAsync($"//CourseDialog?courseId={myCourseId}&visibilityFlag={true}");
     }
 
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)

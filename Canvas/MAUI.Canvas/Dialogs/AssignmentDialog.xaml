@@ -34,5 +34,17 @@
         </Grid>
         <Button Text="Ok" Clicked="OkClicked"/>
         <Button Text="Cancel" Clicked="CancelClicked"/>
+
+        <VerticalStackLayout Margin="20" Spacing="10" IsVisible="{Binding AreDetailsVisible}">
+            <Label Text=""/>
+
+            <Label Text="Sumbissions"/>
+            <ListView
+                ItemsSource="{Binding Submissions}"
+                SelectedItem="{Binding SelectedSubmission}">
+            </ListView>
+
+            <Button Text="Grade Submission" Clicked="GradeSubmitClicked"/>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

@@ -21,6 +21,19 @@ namespace MAUI.Canvas.ViewModels
         }
 
         private Assignment? assignment;  // pass through properties
+        private SubmissionService submissionSvc;
+
+        public bool AreDetailsVisible   // for controlling visibility of relevant listviews and buttons
+        {
+            get; set;
+        } = false; // boolean default value is already false, but I just wanted this to be explicit for clarity
+
+        public void ChangeDetailVisibility(bool visible)
+        {
+            AreDetailsVisible = visible;
+            NotifyPropertyChanged(nameof(AreDetailsVisible));
+        }
+
 
         //private string classification;
         public string Name
@@ -78,6 +91,7 @@ namespace MAUI.Canvas.ViewModels
 
         public AssignmentDialogViewModel(int cId)  // Creating a new assignment    
         {
+            submissionSvc = SubmissionService.Current;
             assignment = new Assignment();
 
             assignment.CourseId = cId;
@@ -88,6 +102,8 @@ namespace MAUI.Canvas.ViewModels
 
         public AssignmentDialogViewModel(int cId, int aId)   // Updating a assignment (cId as parameter is still needed, to differentiate constructors)
         {
+            submissionSvc = SubmissionService.Current;
+
             assignment = AssignmentService.Current.Get(aId) ?? new Assignment();
         }
 
@@ -99,6 +115,24 @@ namespace MAUI.Canvas.ViewModels
             {
                 AssignmentService.Current.AddOrUpdate(assignment);
             }
+        }
+
+
+
+
+        public Submission SelectedSubmission { get; set; }
+
+        public ObservableCollection<Submission> Submissions
+        {
+            get
+            {
+                return new ObservableCollection<Submission>(submissionSvc.Submissions.Where(s => s.AssignmentId == assignment?.Id));
+            }
+        }
+
+        public void RefreshSubmissions()
+        {
+            NotifyPropertyChanged(nameof(Submissions));
         }
 
     }

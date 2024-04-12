@@ -31,38 +31,40 @@
             <Button Text="Ok" Clicked="OkClicked"/>
             <Button Text="Cancel" Clicked="CancelClicked"/>
 
-            <Label Text=""/>
+            <VerticalStackLayout Margin="20" Spacing="10" IsVisible="{Binding AreDetailsVisible}">
+                <Label Text=""/>
 
-            <Label Text="Modules"/>
-            <ListView
-            ItemsSource="{Binding Modules}"
-            SelectedItem="{Binding SelectedModule}">
-            </ListView>
+                <Label Text="Modules"/>
+                <ListView
+                    ItemsSource="{Binding Modules}"
+                    SelectedItem="{Binding SelectedModule}">
+                </ListView>
 
-            <Button Text="Add Module" Clicked="AddModuleClicked"/>
-            <Button Text="Update/View Details of Module" Clicked="UpdateModuleClicked"/>
-            <Button Text="Remove Module" Clicked="RemoveModuleClicked"/>
+                <Button Text="Add Module" Clicked="AddModuleClicked"/>
+                <Button Text="Update/View Details of Module" Clicked="UpdateModuleClicked"/>
+                <Button Text="Remove Module" Clicked="RemoveModuleClicked"/>
 
-            <Label Text=""/>
+                <Label Text=""/>
 
-            <Label Text="Assignments"/>
-            <ListView
+                <Label Text="Assignments"/>
+                <ListView
                 ItemsSource="{Binding Assignments}"
                 SelectedItem="{Binding SelectedAssignment}">
-            </ListView>
+                </ListView>
 
-            <Button Text="Add Assignment" Clicked="AddAssignmentClicked"/>
-            <Button Text="Update/View Details of Assignment" Clicked="UpdateAssignmentClicked"/>
-            <Button Text="Remove Assignment" Clicked="RemoveAssignmentClicked"/>
+                <Button Text="Add Assignment" Clicked="AddAssignmentClicked"/>
+                <Button Text="Update/View Details of Assignment" Clicked="UpdateAssignmentClicked"/>
+                <Button Text="Remove Assignment" Clicked="RemoveAssignmentClicked"/>
 
-            <Label Text=""/>
-            
-            <Label Text="Students"/>
-            <ListView
-            ItemsSource="{Binding Students}"
-            SelectedItem="{Binding SelectedStudent}">
-            </ListView>
-            <Button Text="Remove Student" Clicked="RemoveStudentClicked"/>
+                <Label Text=""/>
+
+                <Label Text="Students"/>
+                <ListView
+                    ItemsSource="{Binding Students}"
+                    SelectedItem="{Binding SelectedStudent}">
+                </ListView>
+                <Button Text="Remove Student" Clicked="RemoveStudentClicked"/>
+            </VerticalStackLayout>
 
         </VerticalStackLayout>
     </ScrollView>

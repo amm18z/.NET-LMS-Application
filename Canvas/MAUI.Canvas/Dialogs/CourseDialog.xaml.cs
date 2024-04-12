@@ -4,9 +4,14 @@ using MAUI.Canvas.ViewModels;
 namespace MAUI.Canvas.Dialogs;
 
 [QueryProperty(nameof(CourseId), "courseId")]
+[QueryProperty(nameof(VisibilityFlag), "visibilityFlag")]
 public partial class CourseDialog : ContentPage
 {
     public int CourseId
+    {
+        get; set;
+    }
+    public bool VisibilityFlag
     {
         get; set;
     }
@@ -31,7 +36,8 @@ public partial class CourseDialog : ContentPage
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
         BindingContext = new CourseDialogViewModel(CourseId);   // explicitly resetting viewmodel every time we navigate to coursedialog, gives us a brand new course object every time.
-                                                        // otherwise, we'll get what we previously typed into the boxes every time
+                                                                // otherwise, we'll get what we previously typed into the boxes every time
+        (BindingContext as CourseDialogViewModel)?.ChangeDetailVisibility(VisibilityFlag);
     }
 
     private void AddModuleClicked(object sender, EventArgs e)
@@ -70,11 +76,11 @@ public partial class CourseDialog : ContentPage
 
     private void UpdateAssignmentClicked(object sender, EventArgs e)
     {
-        var myModuleId = (BindingContext as CourseDialogViewModel)?.SelectedAssignment?.Id;
+        var myAssignmentId = (BindingContext as CourseDialogViewModel)?.SelectedAssignment?.Id;
 
-        if (myModuleId != null)
+        if (myAssignmentId != null)
         {
-            Shell.Current.GoToAsync($"//AssignmentDialog?moduleId={myModuleId}");
+            Shell.Current.GoToAsync($"//AssignmentDialog?assignmentId={myAssignmentId}&visibilityFlag={true}");
         }
     }
 

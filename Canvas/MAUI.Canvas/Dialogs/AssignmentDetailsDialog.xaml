@@ -38,12 +38,11 @@
             SelectedItem="{Binding SelectedSubmission}">
         </ListView>
 
-        <Label Text=""/>
 
-        
         <Button Text="Add Submission" Clicked="AddSubmitClicked"/>
         <Button Text="Modify Submission" Clicked="ModifySubmitClicked"/>
 
+        <Label Text=""/>
 
         <Button Text="Back" Clicked="CancelClicked"/>
     </VerticalStackLayout>

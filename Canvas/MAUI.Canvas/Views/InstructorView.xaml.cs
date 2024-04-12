@@ -37,7 +37,7 @@ public partial class InstructorView : ContentPage
 
         if (myCourseId != null)
         {
-            Shell.Current.GoToAsync($"//CourseDialog?courseId={myCourseId}");
+            Shell.Current.GoToAsync($"//CourseDialog?courseId={myCourseId}&visibilityFlag={true}");
         }
 
     }

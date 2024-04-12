@@ -49,5 +49,9 @@
         Title="Submission Dialog"
         ContentTemplate="{DataTemplate dialogs:SubmissionDialog}"
         Route="SubmissionDialog" />
+    <ShellContent
+        Title="Submission Grading Dialog"
+        ContentTemplate="{DataTemplate dialogs:SubmissionGradingDialog}"
+        Route="SubmissionGradingDialog" />
 
 </Shell>

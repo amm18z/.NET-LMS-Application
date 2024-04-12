@@ -25,6 +25,17 @@ namespace MAUI.Canvas.ViewModels
         private AssignmentService assignmentSvc;
         private PersonService personSvc;
 
+        public bool AreDetailsVisible   // for controlling visibility of relevant listviews and buttons
+        {
+            get; set;
+        } = false; // boolean default value is already false, but I just wanted this to be explicit for clarity
+
+        public void ChangeDetailVisibility(bool visible)
+        {
+            AreDetailsVisible = visible;
+            NotifyPropertyChanged(nameof(AreDetailsVisible));
+        }
+
         //private string classification;
         public string Code
         {

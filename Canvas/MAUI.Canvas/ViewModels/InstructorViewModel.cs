@@ -32,7 +32,7 @@ namespace MAUI.Canvas.ViewModels
             courseSvc = CourseService.Current;
         }
 
-
+        
 
 
 

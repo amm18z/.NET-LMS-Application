@@ -103,6 +103,9 @@
 	  <MauiXaml Update="Dialogs\SubmissionDialog.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Dialogs\SubmissionGradingDialog.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\StudentView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
