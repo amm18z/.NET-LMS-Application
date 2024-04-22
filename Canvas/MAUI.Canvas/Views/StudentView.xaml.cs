@@ -18,8 +18,11 @@ public partial class StudentView : ContentPage
 
     private void LoginClicked(object sender, EventArgs e)
     {
-        (BindingContext as StudentViewModel)?.Login();
-        (BindingContext as StudentViewModel)?.RefreshCourses();
+        if((BindingContext as StudentViewModel)?.SelectedStudent != null)
+        {
+            (BindingContext as StudentViewModel)?.Login();
+            (BindingContext as StudentViewModel)?.RefreshCourses();
+        }
     }
 
     private void CourseDetailsClicked(object sender, EventArgs e)
