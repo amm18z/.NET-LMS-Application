@@ -1,1 +1,1 @@
-Learning management system console application (similar to Canvas).
+Learning management system application (similar to Canvas).
